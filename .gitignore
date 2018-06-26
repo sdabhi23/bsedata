@@ -1,0 +1,11 @@
+__pycache__/
+
+*.py[cod]
+
+build/
+
+dist/
+
+bsedata.egg-info/
+
+bsedata/__pycache__/
