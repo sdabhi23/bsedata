@@ -1,5 +1,10 @@
 # bsedata
 
+[![PyPi Version](https://img.shields.io/pypi/v/bsedata.svg)](https://pypi.org/project/bsedata/)
+[![PyPi License](https://img.shields.io/pypi/l/bsedata.svg)](https://pypi.org/project/bsedata/)
+[![PyPi PyVersions](https://img.shields.io/pypi/pyversions/bsedata.svg)](https://pypi.org/project/bsedata/)
+[![PyPi Format](https://img.shields.io/pypi/format/bsedata.svg)](https://pypi.org/project/bsedata/)
+
 Python library for extracting real-time data from Bombay Stock Exchange (India).
 
 ## Introduction
@@ -108,7 +113,7 @@ bsedata is a library for collecting real-time data from Bombay Stock Exchange (I
     ```
  * Top Losers
     ```python
-    >>> losers = b.topLainers()
+    >>> losers = b.topLosers()
     >>> pprint(losers)
     [{'LTP': '54.50',
       'change': '-3.70',
