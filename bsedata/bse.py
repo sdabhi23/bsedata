@@ -24,7 +24,7 @@
 
 """
 
-from . import losers, gainers, quote
+from . import losers, gainers, quote, index
 
 class BSE:
 
@@ -34,8 +34,11 @@ class BSE:
     def topLosers(self):
         return losers.getLosers()
 
-    def quote(self, scripCode):
-        return quote.getQuote(scripCode)
+    def getQuote(self, scripCode):
+        return quote.quote(scripCode)
+
+    def getIndices(self, category):
+        return index.indices(category)
 
     def __str__(self):
         return 'Driver Class for Bombay Stock Exchange (BSE)'

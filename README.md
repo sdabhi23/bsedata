@@ -11,13 +11,14 @@ Python library for extracting real-time data from Bombay Stock Exchange (India).
 
 bsedata is a library for collecting real-time data from Bombay Stock Exchange (India). It can be used in various types of projects which requires getting live quotes for a given stock or index or build large data sets for further data analytics. You can also build cli applications which can provide you live market details at a blazing fast speeds, much faster that the browsers. The accuracy of data is only as correct as provided on m.bseindia.com.
 
-## Main Features:
+## Roadmap:
 
 - [x] Getting live quotes for stocks using stock codes.
 - [x] Return data in both json and python dict and list formats.
 - [x] Getting list of top losers.
 - [x] Getting list of top gainers.
-- [ ] Getting quotes for all the indices traded in BSE.
+- [x] Getting quotes for all the indices traded in BSE.
+- [ ] Adding function to fetch details of an individual index.
 - [ ] Helper APIs to check whether a given stock code or index code is correct.
 - [ ] Getting list of all indices and stocks.
 - [ ] Cent percent unittest coverage.
@@ -43,7 +44,7 @@ bsedata is a library for collecting real-time data from Bombay Stock Exchange (I
     ```
  * We will first see how to get a quote. Assume that we want to fetch current price of _**Infosys Technology**_. The only thing we need is BSE Scrip Code (Security Code) for this company. The BSE scrip code for Infosys is _500209_.
     ```python
-    >>> q = b.quote("500209")
+    >>> q = b.getQuote("500209")
     >>> from pprint import pprint # just for neatness of display
     >>> pprint(q)
     {'2WeekAvgQuantity': '1.02 Lakh',
@@ -113,7 +114,7 @@ bsedata is a library for collecting real-time data from Bombay Stock Exchange (I
     ```
  * Top Losers
     ```python
-    >>> losers = b.topLosers()
+    >>> losers = b.topLainers()
     >>> pprint(losers)
     [{'LTP': '54.50',
       'change': '-3.70',
@@ -140,6 +141,51 @@ bsedata is a library for collecting real-time data from Bombay Stock Exchange (I
       'pChange': '-5.14',
       'scripCode': '540064',
       'securityID': 'FRETAIL'}]
+    ```
+ * Indices
+
+    **Indices are currently available only as a part of a category**
+    ```python
+    >>> category = "corporate"
+    # Category can be one of the following:
+    # market_cap/broad
+    # sector_and_industry
+    # thematics
+    # strategy
+    # sustainability
+    # volatility
+    # composite
+    # government
+    # corporate
+    # money_market
+    >>> indices = d.getIndices(category)
+    >>> pprint(indices)
+    {'indices': [{'change': '0.00',
+                  'currentValue': '149.02',
+                  'name': 'S&P BSE India Corporate Bond Index',
+                  'pChange': '0.00',
+                  'scripFlag': 'SPBINCPT'},
+                {'change': '0.00',
+                  'currentValue': '148.74',
+                  'name': 'S&P BSE India Financials Bond Index',
+                  'pChange': '0.00',
+                  'scripFlag': 'SPBINCFT'},
+                {'change': '-0.32',
+                  'currentValue': '153.82',
+                  'name': 'S&P BSE India Services Bond Index',
+                  'pChange': '-0.21',
+                  'scripFlag': 'SPBINCST'},
+                {'change': '+0.05',
+                  'currentValue': '149.29',
+                  'name': 'S&P BSE India Utilities Bond Index',
+                  'pChange': '0.03',
+                  'scripFlag': 'SPBINCUT'},
+                {'change': '-0.01',
+                  'currentValue': '153.59',
+                  'name': 'S&P BSE India Industrials Bond Index',
+                  'pChange': '0.00',
+                  'scripFlag': 'SPBINCIT'}],
+     'updatedOn': '27 Jul 2018'}
     ```
 
 ## License
