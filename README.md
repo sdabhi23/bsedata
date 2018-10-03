@@ -9,12 +9,12 @@ Python library for extracting real-time data from Bombay Stock Exchange (India).
 
 ## Introduction
 
-bsedata is a library for collecting real-time data from Bombay Stock Exchange (India). It can be used in various types of projects which requires getting live quotes for a given stock or index or build large data sets for further data analytics. You can also build cli applications which can provide you live market details at a blazing fast speeds, much faster that the browsers. The accuracy of data is only as correct as provided on m.bseindia.com.
+bsedata is a library for collecting real-time data from Bombay Stock Exchange (India). It can be used in various types of projects which require getting live quotes for a given stock or index or build large data sets for data analysis. You can also build CLI applications which can provide live market details at blazing fast speeds, much faster than that in a browser. The data is as accurate as provided on the [BSE website](m.bseindia.com).
 
 ## Roadmap:
 
-- [x] Getting live quotes for stocks using stock codes.
-- [x] Return data in both json and python dict and list formats.
+- [x] Getting live quotes using stock codes.
+- [x] Return data in both json and python (dict and list) formats.
 - [x] Getting list of top losers.
 - [x] Getting list of top gainers.
 - [x] Getting quotes for all the indices traded in BSE.
