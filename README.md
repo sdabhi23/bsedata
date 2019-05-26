@@ -114,7 +114,7 @@ bsedata is a library for collecting real-time data from Bombay Stock Exchange (I
     ```
  * Top Losers
     ```python
-    >>> losers = b.topLainers()
+    >>> losers = b.topLosers()
     >>> pprint(losers)
     [{'LTP': '54.50',
       'change': '-3.70',
