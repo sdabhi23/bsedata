@@ -25,6 +25,8 @@
 """
 
 from . import losers, gainers, quote, index
+import numpy as np
+import requests
 
 class BSE:
 
@@ -39,6 +41,17 @@ class BSE:
 
     def getIndices(self, category):
         return index.indices(category)
+
+    def updateScripCodes(self):
+        r = requests.get('https://s3.amazonaws.com/quandl-static-content/BSE%20Descriptions/stocks.txt')
+        arr = [x.split("|") for x in r.text.split("\n") if x != '']
+        arr = list(map(self.__mapping, arr[1:]))
+        nparr = np.array(arr)
+        np.save('scripCodes', nparr, False)
+
+    def __mapping(self, x):
+        x[1] = x[1][3:]
+        return x
 
     def __str__(self):
         return 'Driver Class for Bombay Stock Exchange (BSE)'

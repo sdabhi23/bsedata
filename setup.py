@@ -17,6 +17,7 @@ setuptools.setup(
     install_requires=[
         'beautifulsoup4',
         'requests',
+        'numpy'
     ],
     classifiers=(
         "Programming Language :: Python :: 2.6",
