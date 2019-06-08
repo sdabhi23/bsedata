@@ -27,6 +27,7 @@
 from bs4 import BeautifulSoup as bs
 import requests
 
+
 def quote(scripCode):
     baseurl = '''https://m.bseindia.com/StockReach.aspx?scripcd='''
     res = requests.get(baseurl + scripCode)

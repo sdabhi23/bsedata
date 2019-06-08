@@ -28,6 +28,7 @@ from bs4 import BeautifulSoup as bs
 import requests
 from pprint import pprint
 
+
 def getGainers():
     baseurl = '''https://m.bseindia.com'''
     res = requests.get(baseurl)
