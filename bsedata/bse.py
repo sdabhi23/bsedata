@@ -25,8 +25,9 @@
 """
 
 from . import losers, gainers, quote, index
-import numpy as np
 import requests
+import json
+
 
 class BSE:
 
@@ -44,14 +45,28 @@ class BSE:
 
     def updateScripCodes(self):
         r = requests.get('https://s3.amazonaws.com/quandl-static-content/BSE%20Descriptions/stocks.txt')
-        arr = [x.split("|") for x in r.text.split("\n") if x != '']
-        arr = list(map(self.__mapping, arr[1:]))
-        nparr = np.array(arr)
-        np.save('scripCodes', nparr, False)
+        stk = {x.split("|")[1][3:]: x.split("|")[0][:-11] for x in r.text.split("\n") if x != '' and x.split("|")[1][:3] == 'BOM'}
+        stk.pop("CODE", None)
+        indices = {x.split("|")[1]: x.split("|")[0] for x in r.text.split("\n") if x != '' and x.split("|")[1][:3] != 'BOM'}
+        indices.pop("CODE", None)
+        f_stk = open('stk.json', 'w+')
+        f_stk.write(json.dumps(stk))
+        f_stk.close()
+        f_indices = open('indices.json', 'w+')
+        f_indices.write(json.dumps(indices))
+        f_indices.close()
+        return
 
-    def __mapping(self, x):
-        x[1] = x[1][3:]
-        return x
+    def getScripCodes(self):
+        f = open('stk.json', 'r')
+        return json.loads(f.read())
+
+    def verifyScripCode(self, code):
+        data = self.getScripCodes()
+        try:
+            return data.get(code)
+        except KeyError:
+            return None
 
     def __str__(self):
         return 'Driver Class for Bombay Stock Exchange (BSE)'
@@ -59,11 +74,10 @@ class BSE:
     def __repr__(self):
         return 'Driver Class for Bombay Stock Exchange (BSE)'
 
+
 # TODO: add unit tests
 # TODO: add documentation
 # TODO: getIndices()
-# TODO: getScripCodes()
-# TODO: verifyScripCode()
 # TODO: isMarketOpen()
 # TODO: fetching some particular fields in bulk (for portfolios)
 """
