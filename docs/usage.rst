@@ -3,7 +3,7 @@ Usage
 
 .. warning::
 
-    Refrain from using this library if you are trying to query the stock exchange more than 1 time per 10 seconds. It increases load on BSE's servers and might even lead to your IP address being blacklisted by them.
+    Refrain from using this library if you are trying to query the stock exchange very very frequently. It increases load on BSE's servers and might even lead to your IP address being blacklisted by them.
 
 Installing with pip
 -------------------
@@ -22,6 +22,9 @@ Instantiation
     print(b)
     # Output:
     # Driver Class for Bombay Stock Exchange (BSE)
+
+    # to execute "updateScripCodes" on instantiation
+    b = BSE(update_codes = True)
 
 Getting a stock quote
 ---------------------
@@ -42,6 +45,7 @@ This method returns all the publicly available data, you can pick the fields you
     #          '4': {'price': '0.00', 'quantity': '-'},
     #          '5': {'price': '0.00', 'quantity': '-'}},
     #  'change': '76.75',
+    #  'companyName': 'V-MART RETAIL LTD.',
     #  'currentValue': '2255.80',
     #  'dayHigh': '2270.00',
     #  'dayLow': '2185.10',
@@ -201,3 +205,45 @@ Getting indices
     #               'pChange': '0.05',
     #               'scripFlag': 'SPBINCIT'}],
     #  'updatedOn': '13 Jun 2019'}
+
+Updating list of scrip codes
+----------------------------
+
+Downloads a fresh list of scrip codes from publicly available Quandl data and resfreshes the library cache.
+
+
+
+.. code-block:: Python
+
+    b.updateScripCodes()
+    # returns nothing
+
+Verifying a scrip code
+----------------------
+
+Verify if a scrip code is valid or not
+
+.. code-block:: Python
+
+    b.updateScripCodes()
+
+    # Valid scrip code
+
+    pprint(b.verifyScripCode('534976'))
+    # Output:
+    # V-mart Retail Ltd.
+
+    # invalid scrip code
+
+    pprint(b.verifyScripCode('534980'))
+    # Output:
+    # None
+
+Getting all listed companies and their scrip codes
+--------------------------------------------------
+
+.. code-block:: Python
+
+    pprint(b.getScripCodes())
+    # Output too large to display in docs
+    # returns a dictionary with scrip codes as keys and respective company names as values
