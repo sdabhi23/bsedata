@@ -42,6 +42,31 @@ Refer the documentation at https://bsedata.readthedocs.io/en/latest/usage.html
 ## Change Log
 
 
+### v0.3.0
+
+**New Features:**
+
+- Implement updateScripCodes, getScripCodes and verifyScripCode methods to verify and search scrip codes
+
+**Bug Fixes:**
+
+- Fix getIndices method returning empty response
+- Fix getQuote method not returning company name
+
+### v0.2.0
+
+**New Features:**
+
+- Getting quotes for all the indices traded in BSE
+
+### v0.1.0
+
+**New Features:**
+
+- Getting live quotes using stock codes
+- Return data in both JSON and python (dict and list) formats
+- Getting list of top losers
+- Getting list of top gainers
 
 ## License
 
