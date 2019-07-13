@@ -35,8 +35,10 @@ class BSE(object):
     National Stock Exchange
     """
 
-    def __init__(self):
-        self.updateScripCodes()
+    def __init__(self, update_codes = False):
+
+        if update_codes:
+            self.updateScripCodes()
 
     def topGainers(self):
         """
@@ -66,7 +68,7 @@ class BSE(object):
 
     def updateScripCodes(self):
         """
-        Download a fresh copy of the scip code listing
+        Download a fresh copy of the scrip code listing
         :return: None
         """
         r = requests.get('https://s3.amazonaws.com/quandl-static-content/BSE%20Descriptions/stocks.txt')
