@@ -81,10 +81,10 @@ This method returns all the publicly available data, you can pick the fields you
         b = BSE()
         codelist = ["500116", "512573"]
         for code in codelist:
-            quote = b.quote(code)
-            pprint(quote.companyName)
-            pprint(quote.currentValue)
-            pprint(quote.updatedOn)
+            quote = b.getQuote(code)
+            pprint(quote["companyName"])
+            pprint(quote["currentValue"])
+            pprint(quote["updatedOn"])
 
 Getting top gainers
 -------------------
