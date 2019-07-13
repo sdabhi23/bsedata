@@ -5,10 +5,10 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="bsedata",
-    version="0.2.0",
+    version="0.3.0",
     author="Shrey Dabhi",
     author_email="shrey.dabhi23@gmail.com",
-    description="A package for fetching data about BSE",
+    description="A package for fetching data from BSE",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/sdabhi23/bsedata",
