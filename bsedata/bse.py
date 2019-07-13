@@ -24,43 +24,85 @@
 
 """
 
-from . import losers, gainers, quote, index
+from . import losers, gainers, quote, indices
+import requests
+import json
 
-class BSE:
+
+class BSE(object):
+    """
+    class which implements all the functionality for
+    National Stock Exchange
+    """
+
+    def __init__(self, update_codes = False):
+
+        if update_codes:
+            self.updateScripCodes()
 
     def topGainers(self):
+        """
+        :return: a sorted list of codes of top gainers
+        """
         return gainers.getGainers()
 
     def topLosers(self):
+        """
+        :return: a sorted list of codes of top losers
+        """
         return losers.getLosers()
 
     def getQuote(self, scripCode):
+        """
+        :param scripCode: a stock code
+        :return: a dictionary which contain details about the stock
+        """
         return quote.quote(scripCode)
 
     def getIndices(self, category):
-        return index.indices(category)
+        """
+        :param category: a category of indices
+        :return: a dictionary with details about the indices belonging to the given category
+        """
+        return indices.indices(category)
+
+    def updateScripCodes(self):
+        """
+        Download a fresh copy of the scrip code listing
+        :return: None
+        """
+        r = requests.get('https://s3.amazonaws.com/quandl-static-content/BSE%20Descriptions/stocks.txt')
+        stk = {x.split("|")[1][3:]: x.split("|")[0][:-11] for x in r.text.split("\n") if x != '' and x.split("|")[1][:3] == 'BOM'}
+        stk.pop("CODE", None)
+        indices = {x.split("|")[1]: x.split("|")[0] for x in r.text.split("\n") if x != '' and x.split("|")[1][:3] != 'BOM'}
+        indices.pop("CODE", None)
+        f_stk = open('stk.json', 'w+')
+        f_stk.write(json.dumps(stk))
+        f_stk.close()
+        f_indices = open('indices.json', 'w+')
+        f_indices.write(json.dumps(indices))
+        f_indices.close()
+        return
+
+    def getScripCodes(self):
+        """
+        :return: a dictionary with scrip codes as keys and company names as values
+        """
+        f = open('stk.json', 'r')
+        return json.loads(f.read())
+
+    def verifyScripCode(self, code):
+        """
+        :return: company name if it is a valid stock code, else None
+        """
+        data = self.getScripCodes()
+        try:
+            return data.get(code)
+        except KeyError:
+            return None
 
     def __str__(self):
         return 'Driver Class for Bombay Stock Exchange (BSE)'
 
     def __repr__(self):
         return 'Driver Class for Bombay Stock Exchange (BSE)'
-
-# TODO: add unit tests
-# TODO: add documentation
-# TODO: getIndices()
-# TODO: getScripCodes()
-# TODO: verifyScripCode()
-# TODO: isMarketOpen()
-# TODO: fetching some particular fields in bulk (for portfolios)
-"""
-HACK:
-    You can use the following code to get details in bulk
-    >>> b = BSE()
-    >>> codelist = ["500116", "512573"]
-    >>> for code in codelist
-    ...     quote = b.quote(code)
-    ...     pprint(quote.companyName)
-    ...     pprint(quote.currentValue)
-    ...     pprint(quote.updatedOn)
-"""

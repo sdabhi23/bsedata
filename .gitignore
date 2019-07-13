@@ -9,3 +9,13 @@ dist/
 bsedata.egg-info/
 
 bsedata/__pycache__/
+
+# .json files for storing scrip codes
+indices.json
+stk.json
+
+# Sphinx documentation
+docs/_build/
+
+# vscode temp files
+.vscode

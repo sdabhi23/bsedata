@@ -27,6 +27,7 @@
 from bs4 import BeautifulSoup as bs
 import requests
 
+
 def quote(scripCode):
     baseurl = '''https://m.bseindia.com/StockReach.aspx?scripcd='''
     res = requests.get(baseurl + scripCode)
@@ -44,11 +45,11 @@ def quote(scripCode):
                         res['pChange'] = span.string.split('(')[1].strip()[:-2]
                 except KeyError:
                     res['currentValue'] = span.strong.string
+            elif span['class'][0] == 'companyname':
+                res['companyName'] = span.string
         except KeyError:
             try:
-                if span['id'] == 'spanCname':
-                    res['companyName'] = span.string
-                elif span['id'] == 'lblPBdate':
+                if span['id'] == 'lblPBdate':
                     res['priceBand'] = span.string.split(':')[1].strip()
                 elif span['id'] == 'strongDate':
                     res['updatedOn'] = span.string.split('-')[1].strip()

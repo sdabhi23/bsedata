@@ -27,6 +27,7 @@
 from bs4 import BeautifulSoup as bs
 import requests
 
+
 def indices(category):
     cat = {
         "market_cap/broad": "1,2",
@@ -59,12 +60,13 @@ corporate
 money_market
         ''')
         return
-    baseurl='''https://m.bseindia.com/IndicesView_New.aspx'''
+    baseurl = '''https://m.bseindia.com/IndicesView_New.aspx'''
     res = requests.get(baseurl)
     c = res.content
     soup = bs(c, "html.parser")
     options = {
-        '__EVENTARGUMENT': 'ddl_Category',
+        '__EVENTTARGET': 'ddl_Category',
+        '__VIEWSTATEENCRYPTED': '',
         '__EVENTARGUMENT': '',
         '__LASTFOCUS': '',
         '__VIEWSTATEGENERATOR': '162C96CD',
@@ -101,7 +103,3 @@ money_market
         results['updatedOn'] = span.string[6:].strip()
     results['indices'] = indices
     return results
-
-if __name__ == "__main__":
-    print(indices("vdjk"))
-    print(indices("government"))
