@@ -13,6 +13,14 @@ bsedata is a library for collecting real-time data from Bombay Stock Exchange (I
 
 The data is as accurate as provided on the [BSE website](m.bseindia.com).
 
+> **Please do not use this application for production usage. It is best used for learning and building application for your own use. For commercial application you better buy a data service.**
+> 
+> **This library uses MIT license hence liability lies with the user and not the author of the application.**
+>
+> **As per India's IT act it is no where mentioned that we cannot scrape a website. It's up to me whether I consume the publicly available data "visually" or through my programme or using some kind of "web reader". As long as data you are scrapping is available in public domain and you are not breaching security and accessing data of private nature with malicious intent, it cannot be termed as illegal.**
+>
+> **But it can certainly be termed "unethical" (which is equally bad) since you are damaging the service itself. Hence be prudent about how much stress you cause to the backend. BSE's website is very capable and even they will not mind if someone is scrapping their website for educational purposes.**
+
 ## Features:
 
 * Getting live quotes using stock codes in Python dicttionaries
