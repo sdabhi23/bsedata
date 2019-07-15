@@ -1,5 +1,6 @@
 # bsedata
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d0e83bb030de48da8b6b5f2d5df8445d)](https://app.codacy.com/app/sdabhi23/bsedata?utm_source=github.com&utm_medium=referral&utm_content=sdabhi23/bsedata&utm_campaign=Badge_Grade_Dashboard)
 [![PyPi Version](https://img.shields.io/pypi/v/bsedata.svg)](https://pypi.org/project/bsedata/)
 [![PyPi License](https://img.shields.io/pypi/l/bsedata.svg)](https://pypi.org/project/bsedata/)
 [![PyPi PyVersions](https://img.shields.io/pypi/pyversions/bsedata.svg)](https://pypi.org/project/bsedata/)
