@@ -5,6 +5,10 @@
 [![PyPi PyVersions](https://img.shields.io/pypi/pyversions/bsedata.svg)](https://pypi.org/project/bsedata/)
 [![PyPi Format](https://img.shields.io/pypi/format/bsedata.svg)](https://pypi.org/project/bsedata/)
 
+| master | dev |
+|--------|-----|
+|![TravicCI master](https://api.travis-ci.com/sdabhi23/bsedata.svg?branch=master)| ![TravisCI dev](https://api.travis-ci.com/sdabhi23/bsedata.svg?branch=dev) |
+
 Python library for extracting real-time data from Bombay Stock Exchange (India).
 
 ## Introduction
