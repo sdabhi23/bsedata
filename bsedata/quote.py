@@ -50,7 +50,10 @@ def quote(scripCode):
         except KeyError:
             try:
                 if span['id'] == 'lblPBdate':
-                    res['priceBand'] = span.string.split(':')[1].strip()
+                    try:
+                        res['priceBand'] = span.string.split(':')[1].strip()
+                    except AttributeError:
+                        res['priceBand'] = ''
                 elif span['id'] == 'strongDate':
                     res['updatedOn'] = span.string.split('-')[1].strip()
             except KeyError:
@@ -90,14 +93,18 @@ def quote(scripCode):
         except KeyError:
             continue
 
-    for tbody in soup('tbody'):
-        try:
-            if tbody['id'] == 'PBtablebody':
-                data = tbody.contents[2]
-                res['upperPriceBand'] = data.contents[1].string.strip()
-                res['lowerPriceBand'] = data.contents[2].string.strip()
-        except KeyError:
-            continue
+    if res['priceBand'] != '':
+        for tbody in soup('tbody'):
+            try:
+                if tbody['id'] == 'PBtablebody':
+                    data = tbody.contents[2]
+                    res['upperPriceBand'] = data.contents[1].string.strip()
+                    res['lowerPriceBand'] = data.contents[2].string.strip()
+            except KeyError:
+                continue
+    else:
+        res['upperPriceBand'] = ''
+        res['lowerPriceBand'] = ''
 
     buy = {}
     sell = {}
