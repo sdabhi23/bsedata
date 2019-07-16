@@ -50,7 +50,10 @@ def quote(scripCode):
         except KeyError:
             try:
                 if span['id'] == 'lblPBdate':
-                    res['priceBand'] = span.string.split(':')[1].strip()
+                    try:
+                        res['priceBand'] = span.string.split(':')[1].strip()
+                    except AttributeError:
+                        res['priceBand'] = ''
                 elif span['id'] == 'strongDate':
                     res['updatedOn'] = span.string.split('-')[1].strip()
             except KeyError:
