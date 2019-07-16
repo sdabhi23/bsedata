@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="bsedata",
-    version="0.3.0",
+    version="0.3.1",
     author="Shrey Dabhi",
     author_email="shrey.dabhi23@gmail.com",
     description="A package for fetching data from BSE",
@@ -19,7 +19,6 @@ setuptools.setup(
         'requests'
     ],
     classifiers=(
-        "Programming Language :: Python :: 2.6",
         "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
