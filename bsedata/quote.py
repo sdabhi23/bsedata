@@ -93,14 +93,18 @@ def quote(scripCode):
         except KeyError:
             continue
 
-    for tbody in soup('tbody'):
-        try:
-            if tbody['id'] == 'PBtablebody':
-                data = tbody.contents[2]
-                res['upperPriceBand'] = data.contents[1].string.strip()
-                res['lowerPriceBand'] = data.contents[2].string.strip()
-        except KeyError:
-            continue
+    if res['priceBand'] != '':
+        for tbody in soup('tbody'):
+            try:
+                if tbody['id'] == 'PBtablebody':
+                    data = tbody.contents[2]
+                    res['upperPriceBand'] = data.contents[1].string.strip()
+                    res['lowerPriceBand'] = data.contents[2].string.strip()
+            except KeyError:
+                continue
+    else:
+        res['upperPriceBand'] = ''
+        res['lowerPriceBand'] = ''
 
     buy = {}
     sell = {}
