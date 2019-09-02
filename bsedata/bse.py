@@ -75,7 +75,7 @@ class BSE(object):
 
         ########
         regex = r"(.*)\|(BOM.*)" # regex to extract symbol & company name
-        matches = re.finditer(regex, r, re.MULTILINE)
+        matches = re.finditer(regex, r.text, re.MULTILINE)
         symboldict = {}
         for match in matches:
             symboldict[match.group(2).strip('BOM')] = match.group(1)
