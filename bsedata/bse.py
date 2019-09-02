@@ -27,7 +27,7 @@
 from . import losers, gainers, quote, indices
 import requests
 import json
-
+import re
 
 class BSE(object):
     """
@@ -72,13 +72,24 @@ class BSE(object):
         :return: None
         """
         r = requests.get('https://s3.amazonaws.com/quandl-static-content/BSE%20Descriptions/stocks.txt')
+
+        ########
+        regex = r"(.*)\|(BOM.*)" # regex to extract symbol & company name
+        matches = re.finditer(regex, r, re.MULTILINE)
+        symboldict = {}
+        for match in matches:
+            symboldict[match.group(2).strip('BOM')] = match.group(1)
+
+        f_stk = open('stk.json', 'w+') #saves in key value pair ex:-{'533022': '20 Microns Ltd. EOD Prices', ....}
+        f_stk.write(json.dumps(symboldict))
+        f_stk.close()
+        ########
+
         stk = {x.split("|")[1][3:]: x.split("|")[0][:-11] for x in r.text.split("\n") if x != '' and x.split("|")[1][:3] == 'BOM'}
         stk.pop("CODE", None)
         indices = {x.split("|")[1]: x.split("|")[0] for x in r.text.split("\n") if x != '' and x.split("|")[1][:3] != 'BOM'}
         indices.pop("CODE", None)
-        f_stk = open('stk.json', 'w+')
-        f_stk.write(json.dumps(stk))
-        f_stk.close()
+
         f_indices = open('indices.json', 'w+')
         f_indices.write(json.dumps(indices))
         f_indices.close()
