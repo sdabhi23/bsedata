@@ -130,7 +130,7 @@ def quote(scripCode):
                 sell['4'] = {"price": td.string, "quantity": td.next_sibling.next_sibling.string}
             elif td['id'] == 'tdSP5':
                 sell['5'] = {"price": td.string, "quantity": td.next_sibling.next_sibling.string}
-        except KeyError:
+        except (KeyError,AttributeError):
             continue
     res['buy'] = buy
     res['sell'] = sell
