@@ -46,6 +46,7 @@ The data is as accurate as provided on the [BSE website](m.bseindia.com).
 
 * [BeautifulSoup 4](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
 * [Requests](http://docs.python-requests.org/en/master/)
+* [lxml](https://lxml.de/)
 * A working internet connection :wink:
 
 ## Usage
@@ -54,6 +55,21 @@ Refer the documentation at https://bsedata.readthedocs.io/en/latest/usage.html
 
 ## Change Log
 
+### v0.4.0
+
+**New Features:**
+
+- Switched to lxml parser for better performance
+
+**Bug Fixes:**
+
+- Add a generic User Agent to all the requests as BSE website blocks requests from the default requests user agent (`python-requests/2.23.0`) ([issue #5](https://github.com/sdabhi23/bsedata/issues/5), [issue #9](https://github.com/sdabhi23/bsedata/issues/9), [issue #13](https://github.com/sdabhi23/bsedata/issues/13), [issue #14](https://github.com/sdabhi23/bsedata/issues/14))
+
+### v0.3.1
+
+**Bug Fixes:**
+
+- Quick fix for getQuote method crashing due to missing `priceBand` attribute on the page ([issue #5](https://github.com/sdabhi23/bsedata/issues/5))
 
 ### v0.3.0
 
