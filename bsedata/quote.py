@@ -27,10 +27,13 @@
 from bs4 import BeautifulSoup as bs
 import requests
 
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36 Edg/83.0.478.45'
+}
 
 def quote(scripCode):
     baseurl = '''https://m.bseindia.com/StockReach.aspx?scripcd='''
-    res = requests.get(baseurl + scripCode)
+    res = requests.get(baseurl + scripCode, headers=headers)
     c = res.content
     soup = bs(c, "html.parser")
 
