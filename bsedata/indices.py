@@ -27,6 +27,9 @@
 from bs4 import BeautifulSoup as bs
 import requests
 
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36 Edg/83.0.478.45'
+}
 
 def indices(category):
     cat = {
@@ -61,9 +64,9 @@ money_market
         ''')
         return
     baseurl = '''https://m.bseindia.com/IndicesView_New.aspx'''
-    res = requests.get(baseurl)
+    res = requests.get(baseurl, headers=headers)
     c = res.content
-    soup = bs(c, "html.parser")
+    soup = bs(c, "lxml")
     options = {
         '__EVENTTARGET': 'ddl_Category',
         '__VIEWSTATEENCRYPTED': '',
@@ -84,7 +87,7 @@ money_market
     options['ddl_Category'] = ddl_category
     res = requests.post(url=baseurl, data=options)
     c = res.content
-    soup = bs(c, "html.parser")
+    soup = bs(c, "lxml")
     indices = []
     for td in soup('td'):
         try:
