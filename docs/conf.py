@@ -18,11 +18,11 @@
 # -- Project information -----------------------------------------------------
 
 project = 'bsedata'
-copyright = '2019, Shrey Dabhi'
+copyright = '2018, Shrey Dabhi'
 author = 'Shrey Dabhi'
 
 # The full version, including alpha/beta/rc tags
-release = '0.3.0'
+release = '0.4.0'
 
 
 # -- General configuration ---------------------------------------------------
@@ -31,7 +31,8 @@ release = '0.3.0'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinx.ext.autodoc'
+    'sphinx.ext.autodoc',
+    'sphinx.ext.extlinks'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -57,3 +58,5 @@ html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 
 master_doc = 'index'
+
+extlinks = {'issue': ('https://github.com/sdabhi23/bsedata/issues/%s','issue ')}

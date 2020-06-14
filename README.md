@@ -5,10 +5,11 @@
 [![PyPi License](https://img.shields.io/pypi/l/bsedata.svg)](https://pypi.org/project/bsedata/)
 [![PyPi PyVersions](https://img.shields.io/pypi/pyversions/bsedata.svg)](https://pypi.org/project/bsedata/)
 [![PyPi Format](https://img.shields.io/pypi/format/bsedata.svg)](https://pypi.org/project/bsedata/)
+[![Documentation Status](https://readthedocs.org/projects/bsedata/badge/?version=latest)](https://bsedata.readthedocs.io/en/latest/?badge=latest)
 
-| master | dev |
-|--------|-----|
-|![TravicCI master](https://api.travis-ci.com/sdabhi23/bsedata.svg?branch=master)| ![TravisCI dev](https://api.travis-ci.com/sdabhi23/bsedata.svg?branch=dev) |
+| master                                                                           | dev                                                                        |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| ![TravicCI master](https://api.travis-ci.com/sdabhi23/bsedata.svg?branch=master) | ![TravisCI dev](https://api.travis-ci.com/sdabhi23/bsedata.svg?branch=dev) |
 
 Python library for extracting real-time data from Bombay Stock Exchange (India).
 
@@ -26,32 +27,32 @@ The data is as accurate as provided on the [BSE website](m.bseindia.com).
 >
 > **But it can certainly be termed "unethical" (which is equally bad) since you are damaging the service itself. Hence be prudent about how much stress you cause to the backend. BSE's website is very capable and even they will not mind if someone is scrapping their website for educational purposes.**
 
-## Features:
+## Features
 
-* Getting live quotes using stock codes in Python dicttionaries
-* Getting list of top losers
-* Getting list of top gainers
-* Getting quotes for all the indices traded in BSE
-* Helper APIs to check whether a given stock code or index code is correct
-* Getting list of all indices and stocks
+- Getting live quotes using stock codes in Python dicttionaries
+- Getting list of top losers
+- Getting list of top gainers
+- Getting quotes for all the indices traded in BSE
+- Helper APIs to check whether a given stock code or index code is correct
+- Getting list of all indices and stocks
 
-## Roadmap:
+## Roadmap
 
-* Get details of an individual index
-* Complete unit test coverage
-* Daily OHLCV data
-* Historical EOD OHLCV data
+- Get details of an individual index
+- Complete unit test coverage
+- Daily OHLCV data
+- Historical EOD OHLCV data
 
 ## Dependencies
 
-* [BeautifulSoup 4](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
-* [Requests](http://docs.python-requests.org/en/master/)
-* [lxml](https://lxml.de/)
-* A working internet connection :wink:
+- [BeautifulSoup 4](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
+- [Requests](http://docs.python-requests.org/en/master/)
+- [lxml](https://lxml.de/)
+- A working internet connection :wink:
 
 ## Usage
 
-Refer the documentation at https://bsedata.readthedocs.io/en/latest/usage.html
+Refer the documentation at <https://bsedata.readthedocs.io/en/latest/usage.html>
 
 ## Change Log
 
@@ -63,13 +64,13 @@ Refer the documentation at https://bsedata.readthedocs.io/en/latest/usage.html
 
 **Bug Fixes:**
 
-- Add a generic User Agent to all the requests as BSE website blocks requests from the default requests user agent (`python-requests/2.23.0`) ([issue #5](https://github.com/sdabhi23/bsedata/issues/5), [issue #9](https://github.com/sdabhi23/bsedata/issues/9), [issue #13](https://github.com/sdabhi23/bsedata/issues/13), [issue #14](https://github.com/sdabhi23/bsedata/issues/14))
+- Add a generic User Agent to all the requests as BSE website is blocking requests from the default requests user agent (`python-requests/2.23.0`) ([issue #5](https://github.com/sdabhi23/bsedata/issues/5), [issue #9](https://github.com/sdabhi23/bsedata/issues/9), [issue #13](https://github.com/sdabhi23/bsedata/issues/13), [issue #14](https://github.com/sdabhi23/bsedata/issues/14))
 
 ### v0.3.1
 
 **Bug Fixes:**
 
-- Quick fix for getQuote method crashing due to missing `priceBand` attribute on the page ([issue #5](https://github.com/sdabhi23/bsedata/issues/5))
+- Quick fix for getQuote method crashing due to missing `priceBand` attribute ([issue #5](https://github.com/sdabhi23/bsedata/issues/5))
 
 ### v0.3.0
 

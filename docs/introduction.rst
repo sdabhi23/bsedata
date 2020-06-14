@@ -13,6 +13,10 @@ Introduction
 .. image:: https://img.shields.io/pypi/format/bsedata.svg
    :target: https://pypi.org/project/bsedata/
 
+.. image:: https://readthedocs.org/projects/bsedata/badge/?version=latest
+   :target: https://bsedata.readthedocs.io/en/latest/?badge=latest
+   :alt: Documentation Status
+
 bsedata is a library for collecting real-time data from Bombay Stock Exchange (India). It can be used in various types of projects which require getting live quotes for a given stock or index or build large data sets for data analysis.
 
 .. note::
@@ -45,7 +49,8 @@ Dependencies
 ------------
 
 * BeautifulSoup 4
-* Requests
+* requests
+* lxml
 * A working internet connection 😉
 
 .. warning::
@@ -54,6 +59,24 @@ Dependencies
 
 Change Log
 ==========
+
+v0.4.0
+------
+
+**New Features:**
+
+- Switched to lxml parser for better performance
+
+**Bug Fixes:**
+
+- Add a generic User Agent to all the requests as BSE website is blocking requests from the default requests user agent (``python-requests/2.23.0``) [:issue:`5`, :issue:`9`, :issue:`13`, :issue:`14`]
+
+v0.3.1
+------
+
+**Bug Fixes:**
+
+- Quick fix for getQuote method crashing due to missing ``priceBand`` attribute [:issue:`5`]
 
 v0.3.0
 ------
