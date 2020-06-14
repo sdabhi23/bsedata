@@ -35,7 +35,7 @@ def getLosers():
     baseurl = '''https://m.bseindia.com'''
     res = requests.get(baseurl, headers=headers)
     c = res.content
-    soup = bs(c, "html.parser")
+    soup = bs(c, "lxml")
     for tag in soup("div"):
         try:
             if(tag['id'] == 'divLosers'):

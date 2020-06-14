@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="bsedata",
-    version="0.3.1",
+    version="0.4.0",
     author="Shrey Dabhi",
     author_email="shrey.dabhi23@gmail.com",
     description="A package for fetching data from BSE",
@@ -16,13 +16,15 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     install_requires=[
         'beautifulsoup4',
-        'requests'
+        'requests',
+        'lxml'
     ],
     classifiers=(
         "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
         "Intended Audience :: Developers",

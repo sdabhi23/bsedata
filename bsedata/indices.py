@@ -66,7 +66,7 @@ money_market
     baseurl = '''https://m.bseindia.com/IndicesView_New.aspx'''
     res = requests.get(baseurl, headers=headers)
     c = res.content
-    soup = bs(c, "html.parser")
+    soup = bs(c, "lxml")
     options = {
         '__EVENTTARGET': 'ddl_Category',
         '__VIEWSTATEENCRYPTED': '',
@@ -87,7 +87,7 @@ money_market
     options['ddl_Category'] = ddl_category
     res = requests.post(url=baseurl, data=options)
     c = res.content
-    soup = bs(c, "html.parser")
+    soup = bs(c, "lxml")
     indices = []
     for td in soup('td'):
         try:

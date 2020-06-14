@@ -35,7 +35,7 @@ def quote(scripCode):
     baseurl = '''https://m.bseindia.com/StockReach.aspx?scripcd='''
     res = requests.get(baseurl + scripCode, headers=headers)
     c = res.content
-    soup = bs(c, "html.parser")
+    soup = bs(c, "lxml")
 
     res = {}
 
