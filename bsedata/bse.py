@@ -27,6 +27,7 @@
 from . import losers, gainers, quote, indices
 import requests
 import json
+from os import path
 
 
 class BSE(object):
@@ -37,7 +38,7 @@ class BSE(object):
 
     def __init__(self, update_codes = False):
 
-        if update_codes:
+        if update_codes or not path.exists('stk.json'):
             self.updateScripCodes()
 
     def topGainers(self):
