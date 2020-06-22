@@ -46,6 +46,9 @@ def quote(scripCode):
                     if span['id'] == 'spanchangVal':
                         res['change'] = span.string.split('(')[0].strip()
                         res['pChange'] = span.string.split('(')[1].strip()[:-2]
+                except AttributeError:
+                    res['change'] = ''
+                    res['pchange'] = ''
                 except KeyError:
                     res['currentValue'] = span.strong.string
             elif span['class'][0] == 'companyname':
@@ -65,34 +68,75 @@ def quote(scripCode):
     for td in soup('td'):
         try:
             if td['id'] == 'tdCShortName':
-                res['securityID'] = td.string.strip()
+                try:
+                    res['securityID'] = td.string.strip()
+                except AttributeError:
+                    res['securityID'] = ''
             elif td['id'] == 'tdscripcode':
-                res['scripCode'] = td.string.strip()
+                try:
+                    res['scripCode'] = td.string.strip()
+                except AttributeError:
+                    res['scripCode'] = ''
             elif td['id'] == 'tdgroup':
-                res['group'] = td.string.strip()
+                try:
+                    res['group'] = td.string.strip()
+                except AttributeError:
+                    res['group'] = ''
             elif td['id'] == 'tdfacevalue':
-                res['faceValue'] = td.string.strip()
+                try:
+                    res['faceValue'] = td.string.strip()
+                except AttributeError:
+                    res['faceValue'] = ''
             elif td['id'] == 'tdIndustry':
-                res['industry'] = td.string.strip()
+                try:
+                    res['industry'] = td.string.strip()
+                except AttributeError:
+                    res['industry'] = ''
             elif td['id'] == 'tdpcloseopen':
-                res['previousClose'] = td.string.split("/")[0].strip()
-                res['previousOpen'] = td.string.split("/")[1].strip()
+                try:
+                    res['previousClose'] = td.string.split("/")[0].strip()
+                    res['previousOpen'] = td.string.split("/")[1].strip()
+                except AttributeError:
+                    res['previousClose'] = ''
+                    res['previousOpen'] = ''
             elif td['id'] == 'tdDHL':
-                res['dayHigh'] = td.string.split("/")[0].strip()
-                res['dayLow'] = td.string.split("/")[1].strip()
+                try:
+                    res['dayHigh'] = td.string.split("/")[0].strip()
+                    res['dayLow'] = td.string.split("/")[1].strip()
+                except AttributeError:
+                    res['dayHigh'] = ''
+                    res['dayLow'] = ''
             elif td['id'] == 'td52WHL':
-                res['52weekHigh'] = td.string.split("/")[0].strip()
-                res['52weekLow'] = td.string.split("/")[1].strip()
+                try:
+                    res['52weekHigh'] = td.string.split("/")[0].strip()
+                    res['52weekLow'] = td.string.split("/")[1].strip()
+                except AttributeError:
+                    res['52weekHigh'] = ''
+                    res['52weekLow'] = ''
             elif td['id'] == 'tdWAp':
-                res['weightedAvgPrice'] = td.string.strip()
+                try:
+                    res['weightedAvgPrice'] = td.string.strip()
+                except AttributeError:
+                    res['weightedAvgPrice'] = ''
             elif td['id'] == 'tdTTV':
-                res['totalTradedValue'] = td.string.strip() + " Cr."
+                try:
+                    res['totalTradedValue'] = td.string.strip() + " Cr."
+                except AttributeError:
+                    res['totalTradedValue'] = '0' + " Cr."
             elif td['id'] == 'tdTTQW':
-                res['totalTradedQuantity'] = td.string.split("/")[0].strip() + " Lakh"
-                res['2WeekAvgQuantity'] = td.string.split("/")[1].strip() + " Lakh"
+                try:
+                    res['totalTradedQuantity'] = td.string.split("/")[0].strip() + " Lakh"
+                    res['2WeekAvgQuantity'] = td.string.split("/")[1].strip() + " Lakh"
+                except AttributeError:
+                    res['totalTradedQuantity'] = '0' + " Lakh"
+                    res['2WeekAvgQuantity'] = '0' + " Lakh"
             elif td['id'] == 'tdMktCapVal':
-                res['marketCapFull'] = td.string.split("/")[0].strip() + " Cr."
-                res['marketCapFreeFloat'] = td.string.split("/")[1].strip() + " Cr."
+                try:    
+                    res['marketCapFull'] = td.string.split("/")[0].strip() + " Cr."
+                    res['marketCapFreeFloat'] = td.string.split("/")[1].strip() + " Cr."
+                except AttributeError:
+                    res['marketCapFull'] = '0' + " Cr."
+                    res['marketCapFreeFloat'] = '0' + " Cr."
         except KeyError:
             continue
 
