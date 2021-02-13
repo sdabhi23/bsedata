@@ -46,7 +46,7 @@ def getPeriodTrend(scripCode,timePeriod):
     data = json.loads(data['Data'])
 
     # formating the data
-    res = [{'date' : x['dttm'], "value" : x['vale1'],"vol" : x['vole']} for x in data]
+    res = [{'date' : x['dttm'], "value" : float(x['vale1']),"vol" : int(x['vole'])} for x in data]
 
 
     return res
