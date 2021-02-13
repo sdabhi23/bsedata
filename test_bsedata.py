@@ -42,3 +42,14 @@ def test_verifyCode_valid():
 
 def test_verifyCode_invalid():
     assert b.verifyScripCode('534980') == None
+
+def test_getPeriodTrend():
+    assert len(b.getPeriodTrend('534976','1M')) > 0
+
+def test_getPeriodTrend_wrong_period():
+    with pytest.raises(AssertionError):
+        assert b.getPeriodTrend('534976','2M')
+
+def test_getPeriodTrend_invalid_company():
+    with pytest.raises(AssertionError):
+        assert b.getPeriodTrend('534980','1M')
