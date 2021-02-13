@@ -42,7 +42,7 @@ def getPeriodTrend(scripCode,timePeriod):
     res = requests.get(URL, headers=headers)
     
     #Extracting the data from the response
-    data = json.loads(res.content)
+    data = json.loads(res.content.decode('utf-8'))
     data = json.loads(data['Data'])
 
     # formating the data
