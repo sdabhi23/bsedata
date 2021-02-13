@@ -24,7 +24,7 @@
 
 """
 
-from . import losers, gainers, quote, indices
+from . import losers, gainers, quote, indices, periodTrend
 import requests
 import json
 
@@ -100,6 +100,13 @@ class BSE(object):
             return data.get(code)
         except KeyError:
             return None
+
+    def getPeriodTrend(self,scripCode,timePeriod):
+        """
+        Get historic price trend of a stock over certain fixed period of time
+        :return: List of dictionaries with date,price,vol data
+        """
+        return periodTrend.getPeriodTrend(scripCode,timePeriod)
 
     def __str__(self):
         return 'Driver Class for Bombay Stock Exchange (BSE)'
