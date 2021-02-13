@@ -53,3 +53,8 @@ def test_getPeriodTrend_wrong_period():
 def test_getPeriodTrend_invalid_company():
     with pytest.raises(AssertionError):
         assert b.getPeriodTrend('534980','1M')
+
+def test_getPeriodTrend_dictionary_format():
+    x = set(['date','value','vol'])
+    y = set(b.getPeriodTrend('534976','1M')[0].keys())
+    assert x.issubset(y)
