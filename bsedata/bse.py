@@ -56,6 +56,7 @@ class BSE(object):
         """
         :param scripCode: A stock code
         :returns: A dictionary which contain details about the stock
+        :raises InvalidStockException: Raised for stocks which have been suspended or no longer trading on BSE
         """
         return quote.quote(scripCode)
 
