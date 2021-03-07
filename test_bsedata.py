@@ -30,6 +30,12 @@ from bsedata.exceptions import InvalidStockException
 
 b = BSE(update_codes=True)
 
+def test_str():
+    assert str(b) == "Driver Class for Bombay Stock Exchange (BSE)"
+
+def test_repr():
+    assert repr(b) == "<BSE: update_codes=True> Driver Class for Bombay Stock Exchange (BSE)"
+
 @pytest.mark.parametrize("scripCode",['534976','500116','512573'])
 def test_getQuote_valid(scripCode):
     assert len(b.getQuote(scripCode)) == 27

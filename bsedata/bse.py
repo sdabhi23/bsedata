@@ -36,7 +36,7 @@ class BSE(object):
     """
 
     def __init__(self, update_codes = False):
-
+        self.update_codes = update_codes
         if update_codes:
             self.updateScripCodes()
 
@@ -97,10 +97,7 @@ class BSE(object):
         :returns: Company name if it is a valid stock code, else None
         """
         data = self.getScripCodes()
-        try:
-            return data.get(code)
-        except KeyError:
-            return None
+        return data.get(code)
 
     def getPeriodTrend(self,scripCode,timePeriod):
         """
@@ -115,4 +112,4 @@ class BSE(object):
         return 'Driver Class for Bombay Stock Exchange (BSE)'
 
     def __repr__(self):
-        return 'Driver Class for Bombay Stock Exchange (BSE)'
+        return '<%s: update_codes=%s> Driver Class for Bombay Stock Exchange (BSE)' % (self.__class__.__name__, self.update_codes)
