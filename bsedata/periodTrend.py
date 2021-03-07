@@ -40,17 +40,12 @@ def getPeriodTrend(scripCode,timePeriod):
     baseurl = '''https://api.bseindia.com/BseIndiaAPI/api/StockReachGraph/w?'''
     URL =  baseurl + '''scripcode={}&flag={}&fromdate=&todate=&seriesid='''.format(scripCode,timePeriod)
     res = requests.get(URL, headers=headers)
-    
-    #Extracting the data from the response
+
+    # extracting the data from the response
     data = json.loads(res.content.decode('utf-8'))
     data = json.loads(data['Data'])
 
     # formating the data
     res = [{'date' : x['dttm'], "value" : float(x['vale1']),"vol" : int(x['vole'])} for x in data]
 
-
     return res
-
-
-    
-    
