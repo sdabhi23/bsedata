@@ -103,8 +103,10 @@ class BSE(object):
 
     def getPeriodTrend(self,scripCode,timePeriod):
         """
-        Get historic price trend of a stock over certain fixed period of time
-        :return: List of dictionaries with date,price,vol data
+        Get historic price and volume trends of a stock over certain fixed period of time
+        :param scripCode: a stock code
+        :param timePeriod: the period of time. It can take the following values: '1M', '3M', '6M' and '12M'
+        :returns: List of dictionaries with date,price,vol data
         """
         return periodTrend.getPeriodTrend(scripCode,timePeriod)
 
