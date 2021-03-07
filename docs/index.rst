@@ -27,3 +27,5 @@ Python library for extracting real-time data from Bombay Stock Exchange (India)
 
    introduction
    usage
+   chglog
+   pydoc
