@@ -26,6 +26,7 @@
 
 import pytest
 from bsedata.bse import BSE
+from bsedata.exceptions import InvalidStockException
 
 b = BSE(update_codes=True)
 
@@ -33,9 +34,17 @@ b = BSE(update_codes=True)
 def test_getQuote_valid(scripCode):
     assert len(b.getQuote(scripCode)) == 27
 
-def test_getQuote_invalid():
-    with pytest.raises(AttributeError):
-        assert b.getQuote('513715')
+def test_getQuote_invalid_default():
+    with pytest.raises(InvalidStockException) as err_info:
+        b.getQuote('513715')
+
+    assert err_info.value.status == "Inactive stock"
+
+def test_getQuote_invalid_custom():
+    with pytest.raises(InvalidStockException) as err_info:
+        b.getQuote('538936')
+
+    assert err_info.value.status == "Suspended due to Procedural reasons"
 
 def test_verifyCode_valid():
     assert b.verifyScripCode('534976') == 'V-mart Retail Ltd.'
