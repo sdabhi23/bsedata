@@ -43,18 +43,19 @@ def test_verifyCode_valid():
 def test_verifyCode_invalid():
     assert b.verifyScripCode('534980') == None
 
-def test_getPeriodTrend():
-    assert len(b.getPeriodTrend('534976','1M')) > 0
+@pytest.mark.parametrize("timePeriod", ['1M', '3M', '6M', '12M'])
+def test_getPeriodTrend(timePeriod):
+    timePeriodResults = {
+        '1M': [20, 30],
+        '3M': [60, 90],
+        '6M': [120, 180],
+        '12M': [240, 360]
+    }
+    assert timePeriodResults[timePeriod][0] <= len(b.getPeriodTrend(
+        '534976', timePeriod)) <= timePeriodResults[timePeriod][1]
 
-def test_getPeriodTrend_wrong_period():
-    with pytest.raises(AssertionError):
-        assert b.getPeriodTrend('534976','2M')
+def test_getPeriodTrend_invalid_period():
+    with pytest.raises(AssertionError) as err_info:
+        b.getPeriodTrend('534976', '2M')
 
-def test_getPeriodTrend_invalid_company():
-    with pytest.raises(AssertionError):
-        assert b.getPeriodTrend('534980','1M')
-
-def test_getPeriodTrend_dictionary_format():
-    x = set(['date','value','vol'])
-    y = set(b.getPeriodTrend('534976','1M')[0].keys())
-    assert x.issubset(y)
+    assert err_info.value.args[0] == "timePeriod should be one of the following options '1M', '3M', '6M' and '12M'"
