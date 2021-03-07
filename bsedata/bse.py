@@ -106,8 +106,6 @@ class BSE(object):
         Get historic price trend of a stock over certain fixed period of time
         :return: List of dictionaries with date,price,vol data
         """
-
-        assert self.verifyScripCode(scripCode) != None, "Not a valid Stock"
         return periodTrend.getPeriodTrend(scripCode,timePeriod)
 
     def __str__(self):
