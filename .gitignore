@@ -1,16 +1,16 @@
-__pycache__/
-
-*.py[cod]
-
+# build artifacts
 build/
-
 dist/
-
 bsedata.egg-info/
 
+# development artifacts
 bsedata/__pycache__/
+__pycache__/
+*.py[cod]
 
+# pytest artifacts
 .pytest_cache/
+.coverage
 
 # .json files for storing scrip codes
 indices.json
