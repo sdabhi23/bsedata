@@ -34,8 +34,8 @@ headers = {
 }
 
 def getPeriodTrend(scripCode,timePeriod):
-    assert timePeriod in ['1D','5D','1M','3M','6M','12M'], "timePeriod should be one of the options '1D','5D','1M','3M','6M','12M' "
-    
+
+    assert timePeriod in ['1M','3M','6M','12M'], "timePeriod should be one of the following options '1M', '3M', '6M' and '12M'"
 
     baseurl = '''https://api.bseindia.com/BseIndiaAPI/api/StockReachGraph/w?'''
     URL =  baseurl + '''scripcode={}&flag={}&fromdate=&todate=&seriesid='''.format(scripCode,timePeriod)
