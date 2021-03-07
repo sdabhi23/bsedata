@@ -24,6 +24,8 @@
 
 """
 
+from bsedata.exceptions import InvalidStockException
+from datetime import datetime as dt
 from bs4 import BeautifulSoup as bs
 import requests
 
@@ -40,6 +42,10 @@ def quote(scripCode):
     res = {}
 
     for span in soup('span'):
+        updt_date = soup.find("span", id="strongDate").text.split('-')[1].strip()
+        updt_diff = dt.strptime(updt_date, "%d %b %y | %I:%M %p") - dt.now()
+        if updt_diff.days < -7:
+            raise InvalidStockException(status = soup.find("td", id="tdDispTxt").text)
         try:
             if span['class'][0] == 'srcovalue':
                 try:
