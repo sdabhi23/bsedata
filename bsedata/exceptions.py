@@ -24,6 +24,7 @@
 
 """
 
+
 class InvalidStockException(Exception):
     """
     Exception raised for stocks which have been suspended or no longer trading on BSE.
