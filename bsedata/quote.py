@@ -24,12 +24,15 @@
 
 """
 
+from bsedata.exceptions import InvalidStockException
+from datetime import datetime as dt
 from bs4 import BeautifulSoup as bs
 import requests
 
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36 Edg/83.0.478.45'
 }
+
 
 def quote(scripCode):
     baseurl = '''https://m.bseindia.com/StockReach.aspx?scripcd='''
@@ -40,6 +43,10 @@ def quote(scripCode):
     res = {}
 
     for span in soup('span'):
+        updt_date = soup.find("span", id="strongDate").text.split('-')[1].strip()
+        updt_diff = dt.strptime(updt_date, "%d %b %y | %I:%M %p") - dt.now()
+        if updt_diff.days < -7:
+            raise InvalidStockException(status=soup.find("td", id="tdDispTxt").text)
         try:
             if span['class'][0] == 'srcovalue':
                 try:
@@ -114,25 +121,35 @@ def quote(scripCode):
     for td in soup('td'):
         try:
             if td['id'] == 'tdBQ1':
-                buy['1'] = {"quantity": td.string, "price": td.next_sibling.next_sibling.string}
+                buy['1'] = {"quantity": td.string,
+                            "price": td.next_sibling.next_sibling.string}
             elif td['id'] == 'tdBQ2':
-                buy['2'] = {"quantity": td.string, "price": td.next_sibling.next_sibling.string}
+                buy['2'] = {"quantity": td.string,
+                            "price": td.next_sibling.next_sibling.string}
             elif td['id'] == 'tdBQ3':
-                buy['3'] = {"quantity": td.string, "price": td.next_sibling.next_sibling.string}
+                buy['3'] = {"quantity": td.string,
+                            "price": td.next_sibling.next_sibling.string}
             elif td['id'] == 'tdBQ4':
-                buy['4'] = {"quantity": td.string, "price": td.next_sibling.next_sibling.string}
+                buy['4'] = {"quantity": td.string,
+                            "price": td.next_sibling.next_sibling.string}
             elif td['id'] == 'tdBQ5':
-                buy['5'] = {"quantity": td.string, "price": td.next_sibling.next_sibling.string}
+                buy['5'] = {"quantity": td.string,
+                            "price": td.next_sibling.next_sibling.string}
             elif td['id'] == 'tdSP1':
-                sell['1'] = {"price": td.string, "quantity": td.next_sibling.next_sibling.string}
+                sell['1'] = {"price": td.string,
+                             "quantity": td.next_sibling.next_sibling.string}
             elif td['id'] == 'tdSP2':
-                sell['2'] = {"price": td.string, "quantity": td.next_sibling.next_sibling.string}
+                sell['2'] = {"price": td.string,
+                             "quantity": td.next_sibling.next_sibling.string}
             elif td['id'] == 'tdSP3':
-                sell['3'] = {"price": td.string, "quantity": td.next_sibling.next_sibling.string}
+                sell['3'] = {"price": td.string,
+                             "quantity": td.next_sibling.next_sibling.string}
             elif td['id'] == 'tdSP4':
-                sell['4'] = {"price": td.string, "quantity": td.next_sibling.next_sibling.string}
+                sell['4'] = {"price": td.string,
+                             "quantity": td.next_sibling.next_sibling.string}
             elif td['id'] == 'tdSP5':
-                sell['5'] = {"price": td.string, "quantity": td.next_sibling.next_sibling.string}
+                sell['5'] = {"price": td.string,
+                             "quantity": td.next_sibling.next_sibling.string}
         except KeyError:
             continue
     res['buy'] = buy

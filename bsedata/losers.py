@@ -31,6 +31,7 @@ headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36 Edg/83.0.478.45'
 }
 
+
 def getLosers():
     baseurl = '''https://m.bseindia.com'''
     res = requests.get(baseurl, headers=headers)
@@ -48,6 +49,12 @@ def getLosers():
     losers = []
     for tr in children:
         td = tr.contents
-        loser = {"securityID": str(td[0].a.string), "scripCode": str(tr.td.a["href"].split("=")[1]), "LTP": str(td[1].string), "change": str(td[2].string), "pChange": str(td[3].string)}
+        loser = {
+            "securityID": str(td[0].a.string),
+            "scripCode": str(tr.td.a["href"].split("=")[1]),
+            "LTP": str(td[1].string),
+            "change": str(td[2].string),
+            "pChange": str(td[3].string)
+        }
         losers.append(loser)
     return losers

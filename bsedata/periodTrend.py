@@ -2,7 +2,7 @@
 
     MIT License
 
-    Copyright (c) 2018 Shrey Dabhi
+    Copyright (c) 2019 Paul Antony
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,8 @@
 
 """
 
-from bs4 import BeautifulSoup as bs
+
+import json
 import requests
 
 headers = {
@@ -32,29 +33,19 @@ headers = {
 }
 
 
-def getGainers():
-    baseurl = '''https://m.bseindia.com'''
-    res = requests.get(baseurl, headers=headers)
-    c = res.content
-    soup = bs(c, "lxml")
-    for tag in soup("div"):
-        try:
-            if(tag['id'] == 'divGainers'):
-                resSoup = tag
-                break
-        except KeyError:
-            continue
-    children = list(resSoup.table.contents)
-    children = children[1:]
-    gainers = []
-    for tr in children:
-        td = tr.contents
-        gainer = {
-            "securityID": str(td[0].a.string),
-            "scripCode": str(tr.td.a["href"].split("=")[1]),
-            "LTP": str(td[1].string),
-            "change": str(td[2].string),
-            "pChange": str(td[3].string)
-        }
-        gainers.append(gainer)
-    return gainers
+def getPeriodTrend(scripCode, timePeriod):
+
+    assert timePeriod in ['1M', '3M', '6M', '12M'], "timePeriod should be one of the following options '1M', '3M', '6M' and '12M'"
+
+    baseurl = '''https://api.bseindia.com/BseIndiaAPI/api/StockReachGraph/w?'''
+    URL = baseurl + '''scripcode={}&flag={}&fromdate=&todate=&seriesid='''.format(scripCode, timePeriod)
+    res = requests.get(URL, headers=headers)
+
+    # extracting the data from the response
+    data = json.loads(res.content.decode('utf-8'))
+    data = json.loads(data['Data'])
+
+    # formating the data
+    res = [{'date': x['dttm'], "value": float(x['vale1']), "vol": int(x['vole'])} for x in data]
+
+    return res

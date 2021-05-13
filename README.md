@@ -1,17 +1,23 @@
 # bsedata
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d0e83bb030de48da8b6b5f2d5df8445d)](https://app.codacy.com/app/sdabhi23/bsedata?utm_source=github.com&utm_medium=referral&utm_content=sdabhi23/bsedata&utm_campaign=Badge_Grade_Dashboard)
 [![PyPi Version](https://img.shields.io/pypi/v/bsedata.svg)](https://pypi.org/project/bsedata/)
 [![PyPi License](https://img.shields.io/pypi/l/bsedata.svg)](https://pypi.org/project/bsedata/)
 [![PyPi PyVersions](https://img.shields.io/pypi/pyversions/bsedata.svg)](https://pypi.org/project/bsedata/)
 [![PyPi Format](https://img.shields.io/pypi/format/bsedata.svg)](https://pypi.org/project/bsedata/)
-[![Documentation Status](https://readthedocs.org/projects/bsedata/badge/?version=latest)](https://bsedata.readthedocs.io/en/latest/?badge=latest)
-
-| master                                                                           | dev                                                                        |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| ![TravicCI master](https://api.travis-ci.com/sdabhi23/bsedata.svg?branch=master) | ![TravisCI dev](https://api.travis-ci.com/sdabhi23/bsedata.svg?branch=dev) |
 
 Python library for extracting real-time data from Bombay Stock Exchange (India).
+
+| Tests on `master` branch                  | Tests on `dev` branch               | Code coverage                                 | Documentation                         |
+| ----------------------------------------- | ----------------------------------- | --------------------------------------------- | ------------------------------------- |
+| [![tests master][testsmaster]][testslink] | [![tests dev][testsdev]][testslink] | [![code coverage][codecovbadge]][codecovlink] | [![documentation][docbadge]][doclink] |
+
+[testsmaster]: https://github.com/sdabhi23/bsedata/actions/workflows/tests.yml/badge.svg?branch=master
+[testsdev]: https://github.com/sdabhi23/bsedata/actions/workflows/tests.yml/badge.svg?branch=dev
+[testslink]: https://github.com/sdabhi23/bsedata/actions/workflows/tests.yml
+[codecovbadge]: https://codecov.io/gh/sdabhi23/bsedata/branch/master/graph/badge.svg?token=QI8ZPA6ODL
+[codecovlink]: https://codecov.io/gh/sdabhi23/bsedata
+[docbadge]: https://readthedocs.org/projects/bsedata/badge/?version=latest
+[doclink]: https://bsedata.readthedocs.io/en/latest/?badge=latest
 
 ## Introduction
 
@@ -56,47 +62,7 @@ Refer the documentation at <https://bsedata.readthedocs.io/en/latest/usage.html>
 
 ## Change Log
 
-### v0.4.0
-
-**New Features:**
-
-- Switched to lxml parser for better performance
-
-**Bug Fixes:**
-
-- Add a generic User Agent to all the requests as BSE website is blocking requests from the default requests user agent (`python-requests/2.23.0`) ([issue #5](https://github.com/sdabhi23/bsedata/issues/5), [issue #9](https://github.com/sdabhi23/bsedata/issues/9), [issue #13](https://github.com/sdabhi23/bsedata/issues/13), [issue #14](https://github.com/sdabhi23/bsedata/issues/14))
-
-### v0.3.1
-
-**Bug Fixes:**
-
-- Quick fix for getQuote method crashing due to missing `priceBand` attribute ([issue #5](https://github.com/sdabhi23/bsedata/issues/5))
-
-### v0.3.0
-
-**New Features:**
-
-- Implement updateScripCodes, getScripCodes and verifyScripCode methods to verify and search scrip codes
-
-**Bug Fixes:**
-
-- Fix getIndices method returning empty response
-- Fix getQuote method not returning company name
-
-### v0.2.0
-
-**New Features:**
-
-- Getting quotes for all the indices traded in BSE
-
-### v0.1.0
-
-**New Features:**
-
-- Getting live quotes using stock codes
-- Return data in both JSON and python (dict and list) formats
-- Getting list of top losers
-- Getting list of top gainers
+Refer the documentation at <https://bsedata.readthedocs.io/en/latest/chglog.html>
 
 ## License
 

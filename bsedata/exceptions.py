@@ -24,37 +24,17 @@
 
 """
 
-from bs4 import BeautifulSoup as bs
-import requests
 
-headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36 Edg/83.0.478.45'
-}
+class InvalidStockException(Exception):
+    """
+    Exception raised for stocks which have been suspended or no longer trading on BSE.
 
+    :param status: the status of the stock as mentioned on BSE website
+    """
 
-def getGainers():
-    baseurl = '''https://m.bseindia.com'''
-    res = requests.get(baseurl, headers=headers)
-    c = res.content
-    soup = bs(c, "lxml")
-    for tag in soup("div"):
-        try:
-            if(tag['id'] == 'divGainers'):
-                resSoup = tag
-                break
-        except KeyError:
-            continue
-    children = list(resSoup.table.contents)
-    children = children[1:]
-    gainers = []
-    for tr in children:
-        td = tr.contents
-        gainer = {
-            "securityID": str(td[0].a.string),
-            "scripCode": str(tr.td.a["href"].split("=")[1]),
-            "LTP": str(td[1].string),
-            "change": str(td[2].string),
-            "pChange": str(td[3].string)
-        }
-        gainers.append(gainer)
-    return gainers
+    def __init__(self, status="Inactive stock"):
+        if status == "":
+            self.status = "Inactive stock"
+        else:
+            self.status = status
+        super().__init__(self.status)

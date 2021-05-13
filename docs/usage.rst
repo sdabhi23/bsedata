@@ -3,7 +3,11 @@ Usage
 
 .. warning::
 
-    Refrain from using this library if you are trying to query the stock exchange very very frequently. It increases load on BSE's servers and might even lead to your IP address being blacklisted by them.
+    Refrain from using this library if you are trying to query the stock exchange very very frequently.
+    It increases load on BSE's servers and might even lead to your IP address being blacklisted by them.
+    Apart from the technical issues, it's higly unethical.
+
+    For frequent queries, consider buying data from BSE or a vendor. More details are available at https://www.bseindia.com/market_data_products.html
 
 Installing with pip
 -------------------
@@ -121,7 +125,7 @@ Getting top gainers
     #   'securityID': 'IIFL'}]
 
 Getting top losers
--------------------
+------------------
 
 .. code-block:: Python
 
@@ -153,6 +157,45 @@ Getting top losers
     #   'pChange': '-6.89',
     #   'scripCode': '534809',
     #   'securityID': 'PCJEWELLER'}]
+
+
+Getting Period Trend data
+-------------------------
+
+Get historic price trend of a stock over certain fixed period of time. This data can be used to visualize the trends in the stock price
+
+.. note::
+
+    The available period options are ``'1M'``, ``'3M'``, ``'6M'`` and ``'12M'``.
+
+.. code-block:: Python
+
+    his = b.getPeriodTrend('534976','6M')
+    pprint(q)
+    # Output:
+    # [{'date': 'Tue Jan 12 2021 00:00:00', 'value': '2453.10', 'vol': '791'},
+    #  {'date': 'Wed Jan 13 2021 00:00:00', 'value': '2422.15', 'vol': '771'},
+    #  {'date': 'Thu Jan 14 2021 00:00:00', 'value': '2417.45', 'vol': '423'},
+    #  {'date': 'Fri Jan 15 2021 00:00:00', 'value': '2404.45', 'vol': '228'},
+    #  {'date': 'Mon Jan 18 2021 00:00:00', 'value': '2415.25', 'vol': '241'},
+    #  {'date': 'Tue Jan 19 2021 00:00:00', 'value': '2437.10', 'vol': '589'},
+    #  {'date': 'Wed Jan 20 2021 00:00:00', 'value': '2410.20', 'vol': '809'},
+    #  {'date': 'Thu Jan 21 2021 00:00:00', 'value': '2473.40', 'vol': '4657'},
+    #  {'date': 'Fri Jan 22 2021 00:00:00', 'value': '2495.10', 'vol': '1671'},
+    #  {'date': 'Mon Jan 25 2021 00:00:00', 'value': '2496.25', 'vol': '636'},
+    #  {'date': 'Wed Jan 27 2021 00:00:00', 'value': '2399.90', 'vol': '1063'},
+    #  {'date': 'Thu Jan 28 2021 00:00:00', 'value': '2417.30', 'vol': '3635'},
+    #  {'date': 'Fri Jan 29 2021 00:00:00', 'value': '2453.15', 'vol': '129'},
+    #  {'date': 'Mon Feb 01 2021 00:00:00', 'value': '2457.35', 'vol': '785'},
+    #  {'date': 'Tue Feb 02 2021 00:00:00', 'value': '2451.95', 'vol': '176'},
+    #  {'date': 'Wed Feb 03 2021 00:00:00', 'value': '2458.30', 'vol': '1689'},
+    #  {'date': 'Thu Feb 04 2021 00:00:00', 'value': '2493.30', 'vol': '1433'},
+    #  {'date': 'Fri Feb 05 2021 00:00:00', 'value': '2478.40', 'vol': '1066'},
+    #  {'date': 'Mon Feb 08 2021 00:00:00', 'value': '2472.95', 'vol': '1037'},
+    #  {'date': 'Tue Feb 09 2021 00:00:00', 'value': '2446.55', 'vol': '1013'},
+    #  {'date': 'Wed Feb 10 2021 00:00:00', 'value': '2485.20', 'vol': '313'},
+    #  {'date': 'Thu Feb 11 2021 00:00:00', 'value': '2982.20', 'vol': '16605'},
+    #  {'date': 'Fri Feb 12 2021 00:00:00', 'value': '2881.35', 'vol': '8452'}]
 
 Getting indices
 ---------------
@@ -210,8 +253,6 @@ Updating list of scrip codes
 ----------------------------
 
 Downloads a fresh list of scrip codes from publicly available Quandl data and resfreshes the library cache.
-
-
 
 .. code-block:: Python
 

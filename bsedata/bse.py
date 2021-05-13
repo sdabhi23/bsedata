@@ -24,52 +24,54 @@
 
 """
 
-from . import losers, gainers, quote, indices
+from . import losers, gainers, quote, indices, periodTrend
 import requests
 import json
 
 
 class BSE(object):
     """
-    class which implements all the functionality for
-    National Stock Exchange
+    Class which implements the functionality for
+    Bombay Stock Exchange (BSE)
     """
 
-    def __init__(self, update_codes = False):
-
+    def __init__(self, update_codes=False):
+        self.update_codes = update_codes
         if update_codes:
             self.updateScripCodes()
 
     def topGainers(self):
         """
-        :return: a sorted list of codes of top gainers
+        :returns: A sorted list of codes of top gainers
         """
         return gainers.getGainers()
 
     def topLosers(self):
         """
-        :return: a sorted list of codes of top losers
+        :returns: A sorted list of codes of top losers
         """
         return losers.getLosers()
 
     def getQuote(self, scripCode):
         """
-        :param scripCode: a stock code
-        :return: a dictionary which contain details about the stock
+        :param scripCode: A stock code
+        :returns: A dictionary which contain details about the stock
+        :raises InvalidStockException: Raised for stocks which have been suspended or no longer trading on BSE
         """
         return quote.quote(scripCode)
 
     def getIndices(self, category):
         """
-        :param category: a category of indices
-        :return: a dictionary with details about the indices belonging to the given category
+        :param category: A category of indices
+        :returns: A dictionary with details about the indices belonging to the given category
         """
         return indices.indices(category)
 
     def updateScripCodes(self):
         """
         Download a fresh copy of the scrip code listing
-        :return: None
+
+        :returns: None
         """
         r = requests.get('https://s3.amazonaws.com/quandl-static-content/BSE%20Descriptions/stocks.txt')
         stk = {x.split("|")[1][3:]: x.split("|")[0][:-11] for x in r.text.split("\n") if x != '' and x.split("|")[1][:3] == 'BOM'}
@@ -86,23 +88,30 @@ class BSE(object):
 
     def getScripCodes(self):
         """
-        :return: a dictionary with scrip codes as keys and company names as values
+        :returns: A dictionary with scrip codes as keys and company names as values
         """
         f = open('stk.json', 'r')
         return json.loads(f.read())
 
     def verifyScripCode(self, code):
         """
-        :return: company name if it is a valid stock code, else None
+        :returns: Company name if it is a valid stock code, else None
         """
         data = self.getScripCodes()
-        try:
-            return data.get(code)
-        except KeyError:
-            return None
+        return data.get(code)
+
+    def getPeriodTrend(self, scripCode, timePeriod):
+        """
+        Get historic price and volume trends of a stock over certain fixed period of time
+
+        :param scripCode: a stock code
+        :param timePeriod: the period of time. It can take the following values: ``'1M'``, ``'3M'``, ``'6M'`` and ``'12M'``
+        :returns: List of dictionaries with date,price,vol data
+        """
+        return periodTrend.getPeriodTrend(scripCode, timePeriod)
 
     def __str__(self):
         return 'Driver Class for Bombay Stock Exchange (BSE)'
 
     def __repr__(self):
-        return 'Driver Class for Bombay Stock Exchange (BSE)'
+        return '<%s: update_codes=%s> Driver Class for Bombay Stock Exchange (BSE)' % (self.__class__.__name__, self.update_codes)
