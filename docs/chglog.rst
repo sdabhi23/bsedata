@@ -1,6 +1,24 @@
 Change Log
 ==========
 
+v0.5.0
+------
+
+**Breaking Changes:**
+
+- Python < 3.6 is no longer officially supported, i.e. the library has not been tested on those Python version in CI. However, it may still continue to work on those versions
+
+**New Features:**
+
+- Get historic price trend of a stock over certain fixed time intervals (``1M``, ``3M``, ``6M``, ``12M``)
+- Add custom exception for invalid or inactive stocks whose data is not available anymore [:issue:`2`, :issue:`18`, :issue:`22`]
+
+**Misc:**
+
+- Remove Travis piplines. This project now uses only GitHub Actions for CI!
+- Add code coverage details to CI
+- Update docs theme
+
 v0.4.0
 ------
 
