@@ -3,7 +3,11 @@ Usage
 
 .. warning::
 
-    Refrain from using this library if you are trying to query the stock exchange very very frequently. It increases load on BSE's servers and might even lead to your IP address being blacklisted by them.
+    Refrain from using this library if you are trying to query the stock exchange very very frequently.
+    It increases load on BSE's servers and might even lead to your IP address being blacklisted by them.
+    Apart from the technical issues, it's higly unethical.
+
+    For frequent queries, consider buying data from BSE or a vendor. More details are available at https://www.bseindia.com/market_data_products.html
 
 Installing with pip
 -------------------
@@ -121,7 +125,7 @@ Getting top gainers
     #   'securityID': 'IIFL'}]
 
 Getting top losers
--------------------
+------------------
 
 .. code-block:: Python
 
@@ -156,18 +160,19 @@ Getting top losers
 
 
 Getting Period Trend data
--------------------
+-------------------------
 
 Get historic price trend of a stock over certain fixed period of time. This data can be used to visualize the trends in the stock price
 
 .. note::
 
-    The avalable period options are '1D','5D','1M','3M','6M','12M'.
+    The available period options are ``'1M'``, ``'3M'``, ``'6M'`` and ``'12M'``.
 
 .. code-block:: Python
+
     his = b.getPeriodTrend('534976','6M')
     pprint(q)
-    # Output:  
+    # Output:
     # [{'date': 'Tue Jan 12 2021 00:00:00', 'value': '2453.10', 'vol': '791'},
     #  {'date': 'Wed Jan 13 2021 00:00:00', 'value': '2422.15', 'vol': '771'},
     #  {'date': 'Thu Jan 14 2021 00:00:00', 'value': '2417.45', 'vol': '423'},
@@ -190,7 +195,7 @@ Get historic price trend of a stock over certain fixed period of time. This data
     #  {'date': 'Tue Feb 09 2021 00:00:00', 'value': '2446.55', 'vol': '1013'},
     #  {'date': 'Wed Feb 10 2021 00:00:00', 'value': '2485.20', 'vol': '313'},
     #  {'date': 'Thu Feb 11 2021 00:00:00', 'value': '2982.20', 'vol': '16605'},
-    #  {'date': 'Fri Feb 12 2021 00:00:00', 'value': '2881.35', 'vol': '8452'}]    
+    #  {'date': 'Fri Feb 12 2021 00:00:00', 'value': '2881.35', 'vol': '8452'}]
 
 Getting indices
 ---------------
@@ -248,8 +253,6 @@ Updating list of scrip codes
 ----------------------------
 
 Downloads a fresh list of scrip codes from publicly available Quandl data and resfreshes the library cache.
-
-
 
 .. code-block:: Python
 

@@ -22,7 +22,7 @@ Welcome to bsedata's documentation!
 Python library for extracting real-time data from Bombay Stock Exchange (India)
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 5
    :caption: Contents:
 
    introduction

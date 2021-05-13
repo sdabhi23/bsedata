@@ -1,5 +1,5 @@
-Package overview
-================
+API Reference
+=============
 
 .. autoclass:: bsedata.bse.BSE
    :members:
