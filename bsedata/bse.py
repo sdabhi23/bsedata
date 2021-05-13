@@ -70,6 +70,7 @@ class BSE(object):
     def updateScripCodes(self):
         """
         Download a fresh copy of the scrip code listing
+
         :returns: None
         """
         r = requests.get('https://s3.amazonaws.com/quandl-static-content/BSE%20Descriptions/stocks.txt')
@@ -102,8 +103,9 @@ class BSE(object):
     def getPeriodTrend(self, scripCode, timePeriod):
         """
         Get historic price and volume trends of a stock over certain fixed period of time
+
         :param scripCode: a stock code
-        :param timePeriod: the period of time. It can take the following values: '1M', '3M', '6M' and '12M'
+        :param timePeriod: the period of time. It can take the following values: ``'1M'``, ``'3M'``, ``'6M'`` and ``'12M'``
         :returns: List of dictionaries with date,price,vol data
         """
         return periodTrend.getPeriodTrend(scripCode, timePeriod)
