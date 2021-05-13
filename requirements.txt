@@ -1,3 +1,10 @@
+sphinxext-opengraph
+sphinx-copybutton
 beautifulsoup4
+pytest-cov
+autopep8
 requests
+pytest
+sphinx
+furo
 lxml
