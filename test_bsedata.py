@@ -61,10 +61,10 @@ def test_verifyCode_invalid():
 @pytest.mark.parametrize("timePeriod", ['1M', '3M', '6M', '12M'])
 def test_getPeriodTrend(timePeriod):
     timePeriodResults = {
-        '1M': [20, 30],
-        '3M': [60, 90],
-        '6M': [120, 180],
-        '12M': [240, 360]
+        '1M': [19, 30],
+        '3M': [57, 90],
+        '6M': [114, 180],
+        '12M': [228, 360]
     }
     assert timePeriodResults[timePeriod][0] <= len(b.getPeriodTrend(
         '534976', timePeriod)) <= timePeriodResults[timePeriod][1]
