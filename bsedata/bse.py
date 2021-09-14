@@ -24,7 +24,7 @@
 
 """
 
-from . import losers, gainers, quote, indices, periodTrend
+from . import losers, gainers, quote, indices, periodTrend, financialData
 import requests
 import json
 
@@ -109,6 +109,18 @@ class BSE(object):
         :returns: List of dictionaries with date,price,vol data
         """
         return periodTrend.getPeriodTrend(scripCode, timePeriod)
+
+
+    def getFinancialData(self, scripCode, trendPeriod, scale):
+        """
+        Get historic finacial data for stocks
+
+        :param scripCode: a stock code
+        :param trendPeriod: Quarterly or Annually trend, It can take the following values: ``'Qtly'`` and ``'Ann'``
+        :param scale: Scale of value in Crore or Million, It can take the following values: ``'Cr'`` and ``'M'``
+        :returns: List of dictionaries with Period, Revenue, OtherIncome, TotalIncome, Expenditure, Interest, PBDT, Depreciation, PBT, Tax, NetProfit, Equity, EPS, CEPS, OPM, NPM
+        """
+        return financialData.getFinancialData(scripCode, trendPeriod, scale)
 
     def __str__(self):
         return 'Driver Class for Bombay Stock Exchange (BSE)'

@@ -288,3 +288,49 @@ Getting all listed companies and their scrip codes
     pprint(b.getScripCodes())
     # Output too large to display in docs
     # returns a dictionary with scrip codes as keys and respective company names as values
+
+Getting historical finacial data of stock
+-----------------------------------------
+
+Get last five quarterly or annualy income data of stock
+
+.. note::
+
+    The available trend period options are ``'Qtly'`` and ``'Ann'``.
+    The available scale for values are ``'Cr'`` for Crore and ``'M'`` for Million. 
+
+.. code-block:: Python
+
+    fin = b.getFinancialData("500570", "Qtly", "M")
+    pprint(q)
+    # Output:
+    # [{'date': 'Tue Jan 12 2021 00:00:00', 'value': '2453.10', 'vol': '791'},
+    #  {'date': 'Wed Jan 13 2021 00:00:00', 'value': '2422.15', 'vol': '771'},
+    #  {'date': 'Thu Jan 14 2021 00:00:00', 'value': '2417.45', 'vol': '423'},
+    #  {'date': 'Fri Jan 15 2021 00:00:00', 'value': '2404.45', 'vol': '228'},
+    #  {'date': 'Mon Jan 18 2021 00:00:00', 'value': '2415.25', 'vol': '241'},
+    #  {'date': 'Tue Jan 19 2021 00:00:00', 'value': '2437.10', 'vol': '589'},
+    #  {'date': 'Wed Jan 20 2021 00:00:00', 'value': '2410.20', 'vol': '809'},
+    #  {'date': 'Thu Jan 21 2021 00:00:00', 'value': '2473.40', 'vol': '4657'},
+    #  {'date': 'Fri Jan 22 2021 00:00:00', 'value': '2495.10', 'vol': '1671'},
+    #  {'date': 'Mon Jan 25 2021 00:00:00', 'value': '2496.25', 'vol': '636'},
+    #  {'date': 'Wed Jan 27 2021 00:00:00', 'value': '2399.90', 'vol': '1063'},
+    #  {'date': 'Thu Jan 28 2021 00:00:00', 'value': '2417.30', 'vol': '3635'},
+    #  {'date': 'Fri Jan 29 2021 00:00:00', 'value': '2453.15', 'vol': '129'},
+    #  {'date': 'Mon Feb 01 2021 00:00:00', 'value': '2457.35', 'vol': '785'},
+    #  {'date': 'Tue Feb 02 2021 00:00:00', 'value': '2451.95', 'vol': '176'},
+    #  {'date': 'Wed Feb 03 2021 00:00:00', 'value': '2458.30', 'vol': '1689'},
+    #  {'date': 'Thu Feb 04 2021 00:00:00', 'value': '2493.30', 'vol': '1433'},
+    #  {'date': 'Fri Feb 05 2021 00:00:00', 'value': '2478.40', 'vol': '1066'},
+    #  {'date': 'Mon Feb 08 2021 00:00:00', 'value': '2472.95', 'vol': '1037'},
+    #  {'date': 'Tue Feb 09 2021 00:00:00', 'value': '2446.55', 'vol': '1013'},
+    #  {'date': 'Wed Feb 10 2021 00:00:00', 'value': '2485.20', 'vol': '313'},
+    #  {'date': 'Thu Feb 11 2021 00:00:00', 'value': '2982.20', 'vol': '16605'},
+    #  {'date': 'Fri Feb 12 2021 00:00:00', 'value': '2881.35', 'vol': '8452'}]
+
+    # [{'Period': 'Jun-21', 'Revenue': 119041.9, 'OtherIncome': 2458.1, 'TotalIncome': 121500.0, 'Expenditure': -125047.6, 'Interest': -6211.0, 'PBDT': -3547.6, 'Depreciation': -9593.9, 'PBT': -13141.5, 'Tax': -65.9, 'NetProfit': -13207.4, 'Equity': 7658.1, 'EPS': -3.45, 'CEPS': -0.94, 'OPM ': 2.24, 'NPM  ': -11.09}
+    #  {'Period': 'Mar-21', 'Revenue': 200459.0, 'OtherIncome': 2600.0, 'TotalIncome': 203059.0, 'Expenditure': -176514.7, 'Interest': -5148.6, 'PBDT': 26544.3, 'Depreciation': -9641.6, 'PBT': 16902.7, 'Tax': -445.9, 'NetProfit': 16456.8, 'Equity': 7658.1, 'EPS': 4.37, 'CEPS': 6.82, 'OPM ': 15.81, 'NPM  ': 8.21}
+    #  {'Period': 'Dec-20', 'Revenue': 146306.0, 'OtherIncome': 2066.5, 'TotalIncome': 148372.5, 'Expenditure': -144901.5, 'Interest': -6562.2, 'PBDT': 3471.0, 'Depreciation': -9476.4, 'PBT': -6005.4, 'Tax': -375.0, 'NetProfit': -6380.4, 'Equity': 7195.4, 'EPS': -1.77, 'CEPS': 0.86, 'OPM ': 6.86, 'NPM  ': -4.36}
+    #  {'Period': 'Sep-20', 'Revenue': 96681.0, 'OtherIncome': 2419.8, 'TotalIncome': 99100.8, 'Expenditure': -102122.1, 'Interest': -6346.7, 'PBDT': -3021.3, 'Depreciation': -9099.2, 'PBT': -12120.5, 'Tax': -4.0, 'NetProfit': -12124.5, 'Equity': 7195.4, 'EPS': -3.37, 'CEPS': -0.84, 'OPM ': 3.44, 'NPM  ': -12.54}
+    #  {'Period': 'Jun-20', 'Revenue': 26868.7, 'OtherIncome': 1343.3, 'TotalIncome': 28212.0, 'Expenditure': -41515.7, 'Interest': -5528.0, 'PBDT': -13303.7, 'Depreciation': -8598.9, 'PBT': -21902.6, 'Tax': -3.8, 'NetProfit': -21906.4, 'Equity': 7195.4, 'EPS': -6.09, 'CEPS': -3.7, 'OPM ': -28.94, 'NPM  ': -81.53}
+    #  {'Period': 'FY 20-21', 'Revenue': 470314.7, 'OtherIncome': 8429.6, 'TotalIncome': 478744.3, 'Expenditure': -465053.9, 'Interest': -23585.4, 'PBDT': 13690.4, 'Depreciation': -36816.1, 'PBT': -23125.7, 'Tax': -828.7, 'NetProfit': -23954.4, 'Equity': 7658.1, 'EPS': -6.59, 'CEPS': 3.36, 'OPM ': 7.93, 'NPM  ': -5.09}}
