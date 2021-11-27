@@ -74,3 +74,12 @@ def test_getPeriodTrend_invalid_period():
         b.getPeriodTrend('534976', '2M')
 
     assert err_info.value.args[0] == "timePeriod should be one of the following options '1M', '3M', '6M' and '12M'"
+
+def test_getHistoricData_invalid_date():
+    with pytest.raises(AssertionError) as err_info:
+        b.getHistoricData('543320', 'Nov 01 2021','Nov 08 2021')
+
+    assert err_info.value.args[0] == "fromdate should be in the format YYYMMDD"
+
+def test_getHistoricData_startdate_before_listing_date():
+    assert b.getHistoricData('543320', '20210501','20211109')[0]['date'] == 'Fri Jul 23 2021 00:00:00'
