@@ -197,6 +197,28 @@ Get historic price trend of a stock over certain fixed period of time. This data
     #  {'date': 'Thu Feb 11 2021 00:00:00', 'value': '2982.20', 'vol': '16605'},
     #  {'date': 'Fri Feb 12 2021 00:00:00', 'value': '2881.35', 'vol': '8452'}]
 
+Getting Historic pricing data
+-------------------------
+
+Get historic price and volume of a stock for each day at closing over a given period of time. 
+
+.. note::
+
+    The fromdate and todate parpameter should be formated as  ``YYYYMMDD``
+    Incase the fromdate is earlier than the date when stock was listed the datat startes from day stock was listed
+
+.. code-block:: Python
+
+    his = b.getHistoricData(543320,'20211101','20211109')
+    pprint(q)
+    # Output:
+    #  [{'date': 'Mon Nov 01 2021 00:00:00', 'value': 132.6, 'vol': 599633}, 
+    #  {'date': 'Tue Nov 02 2021 00:00:00', 'value': 132.4, 'vol': 369281}, 
+    #  {'date': 'Wed Nov 03 2021 00:00:00', 'value': 128.35, 'vol': 1019520}, 
+    #  {'date': 'Thu Nov 04 2021 00:00:00', 'value': 131.6, 'vol': 459514}, 
+    #  {'date': 'Mon Nov 08 2021 00:00:00', 'value': 131.15, 'vol': 1371054}, 
+    #  {'date': 'Tue Nov 09 2021 00:00:00', 'value': 137.55, 'vol': 3036275}]
+
 Getting indices
 ---------------
 
