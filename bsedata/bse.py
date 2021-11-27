@@ -24,7 +24,7 @@
 
 """
 
-from . import losers, gainers, quote, indices, periodTrend
+from . import losers, gainers, quote, indices, periodTrend,historicData
 import requests
 import json
 
@@ -109,6 +109,20 @@ class BSE(object):
         :returns: List of dictionaries with date,price,vol data
         """
         return periodTrend.getPeriodTrend(scripCode, timePeriod)
+
+    def getHistoricData(self, scripCode, fromdate, todate):
+        """
+        Get historic price and volume trends of a stock over a given time period
+
+        :param scripCode: a stock code
+        :param fromdate: starting date in the format ```YYYYMMDD```
+        :param todate: end date in the format ```YYYYMMDD```
+        :returns: List of dictionaries with date,price,vol data for the diven time period
+        """
+        return historicData.getHistoricData(scripCode, fromdate, todate)
+
+
+
 
     def __str__(self):
         return 'Driver Class for Bombay Stock Exchange (BSE)'
