@@ -73,7 +73,7 @@ class BSE(object):
 
         :returns: None
         """
-        r = requests.get('https://s3.amazonaws.com/quandl-static-content/BSE%20Descriptions/stocks.txt')
+        r = requests.get('https://static.quandl.com/BSE+Descriptions/stocks.txt')
         stk = {x.split("|")[1][3:]: x.split("|")[0][:-11] for x in r.text.split("\n") if x != '' and x.split("|")[1][:3] == 'BOM'}
         stk.pop("CODE", None)
         indices = {x.split("|")[1]: x.split("|")[0] for x in r.text.split("\n") if x != '' and x.split("|")[1][:3] != 'BOM'}
