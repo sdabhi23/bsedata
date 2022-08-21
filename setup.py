@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="bsedata",
-    version="0.5.1",
+    version="0.5.2",
     author="Shrey Dabhi",
     author_email="shrey.dabhi23@gmail.com",
     description="A package for fetching data from BSE",
