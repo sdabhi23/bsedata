@@ -24,8 +24,8 @@
 
 """
 
-from bs4 import BeautifulSoup as bs
 import requests
+from bs4 import BeautifulSoup as bs
 
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36 Edg/83.0.478.45'
@@ -74,7 +74,9 @@ money_market
         '__EVENTARGUMENT': '',
         '__LASTFOCUS': '',
         '__VIEWSTATEGENERATOR': '162C96CD',
-        'UcHeaderMenu1$txtGetQuote': ''
+        'UcHeaderMenu1$txtGetQuote': '',
+        '__EVENTVALIDATION': '',
+        '__VIEWSTATE': ''
     }
     for input in soup("input"):
         try:
@@ -86,10 +88,10 @@ money_market
         except KeyError:
             continue
     options['ddl_Category'] = ddl_category
-    res = requests.post(url=baseurl, data=options)
+    res = requests.post(url=baseurl, data=options, headers=headers)
     c = res.content
     soup = bs(c, "lxml")
-    indices = []
+    index_list = []
     for td in soup('td'):
         try:
             if(td['class'][0] == 'TTRow_left'):
@@ -99,11 +101,11 @@ money_market
                 index['pChange'] = td.next_sibling.next_sibling.next_sibling.string.strip()
                 index['scripFlag'] = td.a['href'].strip().split('=')[1]
                 index['name'] = td.a.string.strip().replace(';', '')
-                indices.append(index)
+                index_list.append(index)
         except KeyError:
             continue
     results = {}
     for span in soup("span", id="inddate"):
-        results['updatedOn'] = span.string[6:].strip()
-    results['indices'] = indices
+        results['updatedOn'] = span.string[6:].split('|')[0].strip()
+    results['indices'] = index_list
     return results
