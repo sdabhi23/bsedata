@@ -7,6 +7,7 @@ bsedata.egg-info/
 bsedata/__pycache__/
 __pycache__/
 *.py[cod]
+venv/
 
 # pytest artifacts
 .pytest_cache/
@@ -21,3 +22,6 @@ docs/_build/
 
 # vscode temp files
 .vscode
+
+# pycharm temp files
+.idea
