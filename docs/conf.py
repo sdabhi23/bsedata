@@ -18,7 +18,7 @@ sys.path.insert(0, os.path.abspath('..'))
 # -- Project information -----------------------------------------------------
 
 project = 'bsedata'
-copyright = '2018, Shrey Dabhi'
+copyright = '2018 - 2023, Shrey Dabhi'
 author = 'Shrey Dabhi'
 
 # The full version, including alpha/beta/rc tags

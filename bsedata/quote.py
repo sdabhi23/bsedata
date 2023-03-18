@@ -2,7 +2,7 @@
 
     MIT License
 
-    Copyright (c) 2018 Shrey Dabhi
+    Copyright (c) 2018 - 2023 Shrey Dabhi
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -46,7 +46,7 @@ def quote(scripCode):
         updt_date = soup.find("span", id="strongDate").text.split('-')[1].strip()
         updt_diff = dt.strptime(updt_date, "%d %b %y | %I:%M %p") - dt.now()
         if updt_diff.days < -7:
-            error_text="Inactive stock"
+            error_text=""
             error_text_element=soup.find("td", id="tdDispTxt")
             if error_text_element is not None:
                 error_text=error_text_element.text

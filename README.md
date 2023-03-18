@@ -68,7 +68,7 @@ Refer the documentation at <https://bsedata.readthedocs.io/en/latest/chglog.html
 
 MIT License
 
-Copyright (c) 2018 Shrey Dabhi
+Copyright (c) 2018 - 2023 Shrey Dabhi
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
