@@ -46,7 +46,11 @@ def quote(scripCode):
         updt_date = soup.find("span", id="strongDate").text.split('-')[1].strip()
         updt_diff = dt.strptime(updt_date, "%d %b %y | %I:%M %p") - dt.now()
         if updt_diff.days < -7:
-            raise InvalidStockException(status=soup.find("td", id="tdDispTxt").text)
+            error_text="Inactive stock"
+            error_text_element=soup.find("td", id="tdDispTxt")
+            if error_text_element is not None:
+                error_text=error_text_element.text
+            raise InvalidStockException(status=error_text)
         try:
             if span['class'][0] == 'srcovalue':
                 try:
@@ -103,7 +107,7 @@ def quote(scripCode):
         except KeyError:
             continue
 
-    if res['priceBand'] != '':
+    if res.get('priceBand', '') != '':
         for tbody in soup('tbody'):
             try:
                 if tbody['id'] == 'PBtablebody':
@@ -112,9 +116,9 @@ def quote(scripCode):
                     res['lowerPriceBand'] = data.contents[2].string.strip()
             except KeyError:
                 continue
-    else:
-        res['upperPriceBand'] = ''
-        res['lowerPriceBand'] = ''
+    # else:
+    #     res['upperPriceBand'] = ''
+    #     res['lowerPriceBand'] = ''
 
     buy = {}
     sell = {}

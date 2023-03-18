@@ -43,7 +43,11 @@ def test_repr():
 
 @pytest.mark.parametrize("scripCode", ['534976', '500116', '512573'])
 def test_getQuote_valid(scripCode):
-    assert len(b.getQuote(scripCode)) == 27
+    data = b.getQuote(scripCode)
+    if 'priceBand' not in data.keys():
+        assert len(data) == 24
+    else:
+        assert len(data) == 27
 
 
 def test_getQuote_invalid_default():
