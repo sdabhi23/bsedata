@@ -22,7 +22,7 @@ copyright = '2018, Shrey Dabhi'
 author = 'Shrey Dabhi'
 
 # The full version, including alpha/beta/rc tags
-release = '0.5.0'
+release = '0.5.3'
 
 
 # -- General configuration ---------------------------------------------------
