@@ -1,6 +1,36 @@
 Change Log
 ==========
 
+v0.5.3
+------
+
+**Bug Fixes:**
+
+- Quick fix for ``getQuote`` method crashing due to missing ``priceBand`` attribute and missing error text on the website [:issue:`14`, :issue:`31`, :issue:`36`]
+
+**Breaking Changes:**
+
+- Python < 3.7 is no longer officially supported, i.e. the library has not been tested on those Python version in CI. However, it may still continue to work on those versions
+
+v0.5.2
+------
+
+**Bug Fixes:**
+
+- Fix the issue where the ``getIndices`` function would return an empty list without erroring out and add tests to catch it [:issue:`12`]
+
+v0.5.1
+------
+
+**Bug Fixes:**
+
+- Update the Quandl scrip code file link [:issue:`33`, :issue:`32`]
+
+**Misc:**
+
+- Drop CI for Python 3.6
+- Add cron for tests to catch issues early
+
 v0.5.0
 ------
 
