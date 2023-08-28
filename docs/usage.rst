@@ -38,7 +38,7 @@ This method returns all the publicly available data, you can pick the fields you
 .. code-block:: Python
 
     q = b.getQuote('534976')
-    pprint(q)
+    print(q)
     # Output:
     # {'2WeekAvgQuantity': '0.14 Lakh',
     #  '52weekHigh': '3298.00',
@@ -86,9 +86,9 @@ This method returns all the publicly available data, you can pick the fields you
         codelist = ["500116", "512573"]
         for code in codelist:
             quote = b.getQuote(code)
-            pprint(quote["companyName"])
-            pprint(quote["currentValue"])
-            pprint(quote["updatedOn"])
+            print(quote["companyName"])
+            print(quote["currentValue"])
+            print(quote["updatedOn"])
 
 Getting top gainers
 -------------------
@@ -96,7 +96,7 @@ Getting top gainers
 .. code-block:: Python
 
     tg = b.topGainers()
-    pprint(tg)
+    print(tg)
     # Output:
     # [{'LTP': '2,255.80',
     #   'change': '76.75',
@@ -130,7 +130,7 @@ Getting top losers
 .. code-block:: Python
 
     tg = b.topLosers()
-    pprint(tg)
+    print(tg)
     # Output:
     # [{'LTP': '82.05',
     #   'change': '-9.90',
@@ -162,7 +162,7 @@ Getting top losers
 Getting Period Trend data
 -------------------------
 
-Get historic price trend of a stock over certain fixed period of time. This data can be used to visualize the trends in the stock price
+Get the historic price trend of a stock over a certain fixed period of time. This data can be used to visualize the trends in the stock price
 
 .. note::
 
@@ -171,7 +171,7 @@ Get historic price trend of a stock over certain fixed period of time. This data
 .. code-block:: Python
 
     his = b.getPeriodTrend('534976','6M')
-    pprint(q)
+    print(q)
     # Output:
     # [{'date': 'Tue Jan 12 2021 00:00:00', 'value': '2453.10', 'vol': '791'},
     #  {'date': 'Wed Jan 13 2021 00:00:00', 'value': '2422.15', 'vol': '771'},
@@ -220,7 +220,7 @@ Getting indices
 .. code-block:: Python
 
     indices = b.getIndices(category='corporate')
-    pprint(indices)
+    print(indices)
     # Output:
     # {'indices': [{'change': '-0.31',
     #               'currentValue': '162.58',
@@ -249,10 +249,10 @@ Getting indices
     #               'scripFlag': 'SPBINCIT'}],
     #  'updatedOn': '13 Jun 2019'}
 
-Updating list of scrip codes
+Updating the list of scrip codes
 ----------------------------
 
-Downloads a fresh list of scrip codes from publicly available Quandl data and resfreshes the library cache.
+Downloads a fresh list of scrip codes from publicly available Quandl data and refreshes the library cache.
 
 .. code-block:: Python
 
@@ -270,13 +270,13 @@ Verify if a scrip code is valid or not
 
     # Valid scrip code
 
-    pprint(b.verifyScripCode('534976'))
+    print(b.verifyScripCode('534976'))
     # Output:
     # V-mart Retail Ltd.
 
     # invalid scrip code
 
-    pprint(b.verifyScripCode('534980'))
+    print(b.verifyScripCode('534980'))
     # Output:
     # None
 
@@ -285,6 +285,6 @@ Getting all listed companies and their scrip codes
 
 .. code-block:: Python
 
-    pprint(b.getScripCodes())
+    print(b.getScripCodes())
     # Output too large to display in docs
     # returns a dictionary with scrip codes as keys and respective company names as values
