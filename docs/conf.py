@@ -22,7 +22,7 @@ copyright = '2018 - 2023, Shrey Dabhi'
 author = 'Shrey Dabhi'
 
 # The full version, including alpha/beta/rc tags
-release = '0.5.3'
+release = '0.5.4'
 
 
 # -- General configuration ---------------------------------------------------
@@ -62,4 +62,4 @@ html_static_path = ['_static']
 master_doc = 'index'
 
 extlinks = {
-    'issue': ('https://github.com/sdabhi23/bsedata/issues/%s', 'issue ')}
+    'issue': ('https://github.com/sdabhi23/bsedata/issues/%s', 'issue %s')}
