@@ -61,7 +61,6 @@ Features
 * Quotes for all the indices traded in BSE
 * Helper APIs to check whether a given stock code or index code is correct
 * List of all indices and stocks
-* Historical EOD closing value and volume data
 
 Roadmap
 -------
