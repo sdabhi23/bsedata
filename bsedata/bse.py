@@ -24,7 +24,7 @@
 
 """
 
-from . import losers, gainers, quote, indices, periodTrend
+from . import losers, gainers, quote, indices
 import requests
 import json
 
@@ -99,16 +99,6 @@ class BSE(object):
         """
         data = self.getScripCodes()
         return data.get(code)
-
-    def getPeriodTrend(self, scripCode, timePeriod):
-        """
-        Get historic price and volume trends of a stock over certain fixed period of time
-
-        :param scripCode: a stock code
-        :param timePeriod: the period of time. It can take the following values: ``'1M'``, ``'3M'``, ``'6M'`` and ``'12M'``
-        :returns: List of dictionaries with date,price,vol data
-        """
-        return periodTrend.getPeriodTrend(scripCode, timePeriod)
 
     def __str__(self):
         return 'Driver Class for Bombay Stock Exchange (BSE)'

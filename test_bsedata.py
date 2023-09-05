@@ -72,25 +72,6 @@ def test_verifyCode_invalid():
     assert b.verifyScripCode('534980') == None
 
 
-@pytest.mark.parametrize("timePeriod", ['1M', '3M', '6M', '12M'])
-def test_getPeriodTrend(timePeriod):
-    timePeriodResults = {
-        '1M': [19, 30],
-        '3M': [57, 90],
-        '6M': [114, 180],
-        '12M': [228, 360]
-    }
-    assert timePeriodResults[timePeriod][0] <= len(b.getPeriodTrend(
-        '534976', timePeriod)) <= timePeriodResults[timePeriod][1]
-
-
-def test_getPeriodTrend_invalid_period():
-    with pytest.raises(AssertionError) as err_info:
-        b.getPeriodTrend('534976', '2M')
-
-    assert err_info.value.args[0] == "timePeriod should be one of the following options '1M', '3M', '6M' and '12M'"
-
-
 @pytest.mark.parametrize("category",
                          ["market_cap/broad", "sector_and_industry", "thematics", "strategy", "sustainability",
                           "volatility", "composite", "government", "corporate", "money_market"])

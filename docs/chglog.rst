@@ -1,6 +1,14 @@
 Change Log
 ==========
 
+v0.5.4
+------
+
+**Breaking Changes:**
+
+- Drop the ``getPeriodTrend`` function due to increased security on the new BSE api
+
+
 v0.5.3
 ------
 

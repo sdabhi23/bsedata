@@ -47,7 +47,6 @@ The data is as accurate as provided on the [BSE website](m.bseindia.com).
 - Get details of an individual index
 - Complete unit test coverage
 - Daily OHLCV data
-- Historical EOD OHLCV data
 
 ## Dependencies
 
