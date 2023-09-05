@@ -9,11 +9,12 @@ Python library for extracting real-time data from Bombay Stock Exchange (India).
 
 | Tests on `master` branch                  | Tests on `dev` branch               | Code coverage                                 | Documentation                         |
 | ----------------------------------------- | ----------------------------------- | --------------------------------------------- | ------------------------------------- |
-| [![tests master][testsmaster]][testslink] | [![tests dev][testsdev]][testslink] | [![code coverage][codecovbadge]][codecovlink] | [![documentation][docbadge]][doclink] |
+| [![tests master][testsmaster]][testsmasterlink] | [![tests dev][testsdev]][testsdevlink] | [![code coverage][codecovbadge]][codecovlink] | [![documentation][docbadge]][doclink] |
 
-[testsmaster]: https://github.com/sdabhi23/bsedata/actions/workflows/tests.yml/badge.svg?branch=master
-[testsdev]: https://github.com/sdabhi23/bsedata/actions/workflows/tests.yml/badge.svg?branch=dev
-[testslink]: https://github.com/sdabhi23/bsedata/actions/workflows/tests.yml
+[testsmaster]: https://github.com/sdabhi23/bsedata/actions/workflows/dev-tests.yml/badge.svg?branch=master
+[testsdev]: https://github.com/sdabhi23/bsedata/actions/workflows/dev-tests.yml/badge.svg?branch=dev
+[testsmasterlink]: https://github.com/sdabhi23/bsedata/actions/workflows/dev-tests.yml?query=branch%3Amaster
+[testsdevlink]: https://github.com/sdabhi23/bsedata/actions/workflows/dev-tests.yml?query=branch%3Adev
 [codecovbadge]: https://codecov.io/gh/sdabhi23/bsedata/branch/master/graph/badge.svg?token=QI8ZPA6ODL
 [codecovlink]: https://codecov.io/gh/sdabhi23/bsedata
 [docbadge]: https://readthedocs.org/projects/bsedata/badge/?version=latest
