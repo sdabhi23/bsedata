@@ -1,10 +1,8 @@
-name: tests
+name: master-tests
 
 on:
   push:
     branches: [master]
-  pull_request:
-    types: [opened, synchronize]
   schedule:
     - cron: '0 1 * * *'
 
@@ -15,7 +13,7 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        python-version: ['3.7', '3.8', '3.9', '3.10']
+        python-version: ['3.7', '3.8', '3.9', '3.10', '3.11']
 
     steps:
     - name: Checkout code
@@ -31,9 +29,4 @@ jobs:
     - name: Test with pytest
       run: |
         pip install pytest pytest-cov
-        pytest --cov=bsedata --no-cov-on-fail --cov-report xml
-    - name: Upload to codecov
-      uses: codecov/codecov-action@v3.1.0
-      with:
-        files: ./coverage.xml
-        fail_ci_if_error: true
+        pytest --cov=bsedata --no-cov-on-fail --cov-report=xml
