@@ -1,4 +1,4 @@
-name: master-tests
+name: daily-tests
 
 on:
   schedule:
