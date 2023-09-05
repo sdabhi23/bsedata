@@ -62,4 +62,4 @@ html_static_path = ['_static']
 master_doc = 'index'
 
 extlinks = {
-    'issue': ('https://github.com/sdabhi23/bsedata/issues/%s', 'issue ')}
+    'issue': ('https://github.com/sdabhi23/bsedata/issues/%s', 'issue %s')}
