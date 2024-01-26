@@ -73,17 +73,10 @@ class BSE(object):
 
         :returns: None
         """
-        r = requests.get('https://static.quandl.com/BSE+Descriptions/stocks.txt')
-        stk = {x.split("|")[1][3:]: x.split("|")[0][:-11] for x in r.text.split("\n") if x != '' and x.split("|")[1][:3] == 'BOM'}
-        stk.pop("CODE", None)
-        indices = {x.split("|")[1]: x.split("|")[0] for x in r.text.split("\n") if x != '' and x.split("|")[1][:3] != 'BOM'}
-        indices.pop("CODE", None)
+        r = requests.get('https://pub-87b187a07d9c42109c9e6999439a583f.r2.dev/stk.json')
         f_stk = open('stk.json', 'w+')
-        f_stk.write(json.dumps(stk))
+        f_stk.write(json.dumps(r.json()))
         f_stk.close()
-        f_indices = open('indices.json', 'w+')
-        f_indices.write(json.dumps(indices))
-        f_indices.close()
         return
 
     def getScripCodes(self):
