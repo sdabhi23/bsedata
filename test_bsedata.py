@@ -2,7 +2,7 @@
 
     MIT License
 
-    Copyright (c) 2018 - 2023 Shrey Dabhi
+    Copyright (c) 2018 - 2024 Shrey Dabhi
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -38,13 +38,16 @@ def test_str():
 
 
 def test_repr():
-    assert repr(b) == "<BSE: update_codes=True> Driver Class for Bombay Stock Exchange (BSE)"
+    assert (
+        repr(b)
+        == "<BSE: update_codes=True> Driver Class for Bombay Stock Exchange (BSE)"
+    )
 
 
-@pytest.mark.parametrize("scripCode", ['534976', '500116', '512573'])
+@pytest.mark.parametrize("scripCode", ["534976", "500116", "512573"])
 def test_getQuote_valid(scripCode):
     data = b.getQuote(scripCode)
-    if 'priceBand' not in data.keys():
+    if "priceBand" not in data.keys():
         assert len(data) == 24
     else:
         assert len(data) == 27
@@ -52,30 +55,50 @@ def test_getQuote_valid(scripCode):
 
 def test_getQuote_invalid_default():
     with pytest.raises(InvalidStockException) as err_info:
-        b.getQuote('513715')
+        b.getQuote("513715")
 
     assert err_info.value.status == "Inactive stock"
 
 
 def test_getQuote_invalid_custom():
     with pytest.raises(InvalidStockException) as err_info:
-        b.getQuote('538936')
+        b.getQuote("538936")
 
     assert err_info.value.status == "Suspended due to Procedural reasons"
 
 
-def test_verifyCode_valid():
-    assert b.verifyScripCode('534976') == 'V-mart Retail Ltd.'
+@pytest.mark.parametrize(
+    "scrip_code,scrip_name",
+    [
+        ("534976", "V-MART RETAIL LTD."),
+        ("542649", "Rail Vikas Nigam Ltd"),
+        ("541557", "Fine Organic Industries Ltd"),
+    ],
+)
+def test_verifyCode_valid(scrip_code, scrip_name):
+    assert b.verifyScripCode(scrip_code) == scrip_name
 
 
 def test_verifyCode_invalid():
-    assert b.verifyScripCode('534980') == None
+    assert b.verifyScripCode("534980") == None
 
 
-@pytest.mark.parametrize("category",
-                         ["market_cap/broad", "sector_and_industry", "thematics", "strategy", "sustainability",
-                          "volatility", "composite", "government", "corporate", "money_market"])
+@pytest.mark.parametrize(
+    "category",
+    [
+        "market_cap/broad",
+        "sector_and_industry",
+        "thematics",
+        "strategy",
+        "sustainability",
+        "volatility",
+        "composite",
+        "government",
+        "corporate",
+        "money_market",
+    ],
+)
 def test_getIndices(category):
     indices = b.getIndices(category)
-    datetime.datetime.strptime(indices['updatedOn'], '%d %b %Y')
-    assert len(indices['indices']) >= 1
+    datetime.datetime.strptime(indices["updatedOn"], "%d %b %Y")
+    assert len(indices["indices"]) >= 1

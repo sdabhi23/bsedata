@@ -8,6 +8,7 @@ bsedata/__pycache__/
 __pycache__/
 *.py[cod]
 venv/
+.env
 
 # pytest artifacts
 .pytest_cache/

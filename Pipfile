@@ -1,0 +1,23 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+beautifulsoup4 = "*"
+requests = "*"
+lxml = "*"
+
+[dev-packages]
+boto3 = "==1.34.28"
+pandas = "==2.2.0"
+sphinxext-opengraph = "*"
+sphinx-copybutton = "*"
+pytest-cov = "*"
+autopep8 = "*"
+pytest = "*"
+sphinx = "*"
+furo = "*"
+
+[requires]
+python_version = "3.10"
