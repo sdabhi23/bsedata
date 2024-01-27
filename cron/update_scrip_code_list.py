@@ -42,7 +42,7 @@ logging.basicConfig(
 logging.info("Loading CSV from NASDAQ")
 
 df = pd.read_csv(
-    "https://data.nasdaq.com/api/v3/databases/BSE/metadata?api_key=5jiXMkYN6mW7fVm6ExGo",
+    "https://data.nasdaq.com/api/v3/databases/BSE/metadata",
     compression="zip",
     header=0,
     sep=",",
