@@ -13,6 +13,7 @@ venv/
 # pytest artifacts
 .pytest_cache/
 .coverage
+.coverage.*
 
 # .json files for storing scrip codes
 indices.json
