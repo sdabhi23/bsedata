@@ -36,7 +36,7 @@ class BSE(object):
     """
 
     def __init__(self, update_codes=False):
-        self.update_codes = update_codes
+        self.__update_codes = update_codes
         if update_codes:
             self.updateScripCodes()
 
@@ -73,8 +73,8 @@ class BSE(object):
 
         :returns: None
         """
-        r = requests.get('https://pub-87b187a07d9c42109c9e6999439a583f.r2.dev/stk.json')
-        f_stk = open('stk.json', 'w+')
+        r = requests.get("https://pub-87b187a07d9c42109c9e6999439a583f.r2.dev/stk.json")
+        f_stk = open("stk.json", "w+")
         f_stk.write(json.dumps(r.json()))
         f_stk.close()
         return
@@ -83,7 +83,7 @@ class BSE(object):
         """
         :returns: A dictionary with scrip codes as keys and company names as values
         """
-        f = open('stk.json', 'r')
+        f = open("stk.json", "r")
         return json.loads(f.read())
 
     def verifyScripCode(self, code):
@@ -94,7 +94,7 @@ class BSE(object):
         return data.get(code)
 
     def __str__(self):
-        return 'Driver Class for Bombay Stock Exchange (BSE)'
+        return "Driver Class for Bombay Stock Exchange (BSE)"
 
     def __repr__(self):
-        return '<%s: update_codes=%s> Driver Class for Bombay Stock Exchange (BSE)' % (self.__class__.__name__, self.update_codes)
+        return f"<{self.__class__.__name__}: update_codes={self.__update_codes}> Driver Class for Bombay Stock Exchange (BSE)"
