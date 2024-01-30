@@ -23,12 +23,12 @@
     SOFTWARE.
 
 """
-import datetime
 
+import time
 import pytest
-
+import datetime
 from bsedata.bse import BSE
-from bsedata.exceptions import InvalidStockException
+from bsedata.exceptions import InvalidStockException, BhavCopyNotFound
 
 b = BSE(update_codes=True)
 
@@ -102,3 +102,21 @@ def test_getIndices(category):
     indices = b.getIndices(category)
     datetime.datetime.strptime(indices["updatedOn"], "%d %b %Y")
     assert len(indices["indices"]) >= 1
+    time.sleep(1)
+
+
+def test_getBhavCopyData_on_trade_holiday():
+    with pytest.raises(BhavCopyNotFound):
+        b.getBhavCopyData(datetime.date(2024, 1, 26))
+
+
+def test_getBhavCopyData():
+    bhavCopy = b.getBhavCopyData(datetime.date(2024, 1, 25))
+
+    scripCodeTypes = {x["scrip_type"] for x in bhavCopy}
+
+    predefinedScripCodeTypes = {"equity", "debenture", "preference", "bond"}
+
+    assert scripCodeTypes == predefinedScripCodeTypes
+
+    assert len(bhavCopy) > 0

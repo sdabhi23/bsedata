@@ -36,11 +36,11 @@ bsedata is a library for collecting real-time data from Bombay Stock Exchange (I
    :target: https://codecov.io/gh/sdabhi23/bsedata
    :alt: Code Coverage
 
-.. |testsMaster| image:: https://github.com/sdabhi23/bsedata/actions/workflows/tests.yml/badge.svg?branch=master
+.. |testsMaster| image:: https://github.com/sdabhi23/bsedata/actions/workflows/dev-tests.yml/badge.svg?branch=master
    :target: https://github.com/sdabhi23/bsedata/actions/workflows/tests.yml
    :alt: Status of tests on master branch
 
-.. |testsDev| image:: https://github.com/sdabhi23/bsedata/actions/workflows/tests.yml/badge.svg?branch=dev
+.. |testsDev| image:: https://github.com/sdabhi23/bsedata/actions/workflows/dev-tests.yml/badge.svg?branch=dev
    :target: https://github.com/sdabhi23/bsedata/actions/workflows/tests.yml
    :alt: Status of tests on dev branch
 

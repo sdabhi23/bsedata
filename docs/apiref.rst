@@ -6,3 +6,6 @@ API Reference
 
 .. autoexception:: bsedata.exceptions.InvalidStockException
    :members:
+
+.. autoexception:: bsedata.exceptions.BhavCopyNotFound
+   :members:

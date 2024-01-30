@@ -38,3 +38,14 @@ class InvalidStockException(Exception):
         else:
             self.status = status
         super().__init__(self.status)
+
+
+class BhavCopyNotFound(Exception):
+    """
+    Exception raised when the BhavCopy file is not found on BSE website.
+    """
+
+    def __init__(self):
+        super().__init__(
+            """The BhavCopy file was not found on the BSE website. You are probably trying to get data for a trading holiday."""
+        )

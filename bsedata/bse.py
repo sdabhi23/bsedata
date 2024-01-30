@@ -24,7 +24,8 @@
 
 """
 
-from . import losers, gainers, quote, indices
+from . import losers, gainers, quote, indices, bhavcopy
+import datetime
 import requests
 import json
 
@@ -78,6 +79,49 @@ class BSE(object):
         f_stk.write(json.dumps(r.json()))
         f_stk.close()
         return
+    
+    def getBhavCopyData(self, statsDate: datetime.date):
+        """
+        Get historical OHLCV data from Bhav Copy released by BSE everyday after market closing.
+        The columns available in the data and their description is as given below.
+
+        .. list-table::
+            :widths: 25 75
+            :header-rows: 1
+
+            * - Dictionary Field
+              - Description
+            * - scrip_code
+              - Unique code assigned to a scrip of a company by BSE
+            * - open
+              - The price at which the security first trades on a given trading day
+            * - high
+              - The highest intra-day price of a stock
+            * - low
+              - The lowest intra-day price of a stock
+            * - close
+              - The final price at which a security is traded on a given trading day
+            * - last
+              - The last trade price of the stock
+            * - prev_close
+              - The closing price of the stock for the previous trading day
+            * - total_trades
+              - The total number of trades of a scrip
+            * - total_shares_traded
+              - The total number of shares transacted of a scrip
+            * - net_turnover
+              - Total turnover of a scrip
+            * - scrip_type
+              - Scrip category: Equity, Preference, Debenture or Bond
+
+        The Bhav Copy files have been mapped to the above mentioned custom fields. The complete documentation for Bhav Copy can be found here: https://www.bseindia.com/markets/MarketInfo/BhavCopy.aspx.
+
+        
+        :param statsDate: A `datetime.date` object for the for which you want to fetch the data
+        :returns: A list of dictionaries which contains OHLCV data for that day for all scrip codes active on that day
+        :raises BhavCopyNotFound: Raised when Bhav Copy file is not found on BSE
+        """
+        return bhavcopy.loadBhavCopyData(statsDate)
 
     def getScripCodes(self):
         """
