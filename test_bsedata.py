@@ -113,7 +113,7 @@ def test_getBhavCopyData_on_trade_holiday():
 def test_getBhavCopyData():
     bhavCopy = b.getBhavCopyData(datetime.date(2024, 1, 25))
 
-    scripCodeTypes = {x["scrip_type"] for x in bhavCopy}
+    scripCodeTypes = {x["scripType"] for x in bhavCopy}
 
     predefinedScripCodeTypes = {"equity", "debenture", "preference", "bond"}
 

@@ -91,7 +91,7 @@ class BSE(object):
 
             * - Dictionary Field
               - Description
-            * - scrip_code
+            * - scripCode
               - Unique code assigned to a scrip of a company by BSE
             * - open
               - The price at which the security first trades on a given trading day
@@ -103,16 +103,18 @@ class BSE(object):
               - The final price at which a security is traded on a given trading day
             * - last
               - The last trade price of the stock
-            * - prev_close
+            * - prevClose
               - The closing price of the stock for the previous trading day
-            * - total_trades
+            * - totalTrades
               - The total number of trades of a scrip
-            * - total_shares_traded
+            * - totalSharesTraded
               - The total number of shares transacted of a scrip
-            * - net_turnover
+            * - netTurnover
               - Total turnover of a scrip
-            * - scrip_type
+            * - scripType
               - Scrip category: Equity, Preference, Debenture or Bond
+            * - securityID
+              - Name of the company
 
         The Bhav Copy files have been mapped to the above mentioned custom fields. The complete documentation for Bhav Copy can be found here: https://www.bseindia.com/markets/MarketInfo/BhavCopy.aspx.
 

@@ -43,15 +43,16 @@ def loadBhavCopyData(statsDate: datetime.date) -> list:
 def mapBhavCopyRowToDict(row: dict) -> dict:
     SC_TYPE_MAP = {"B": "bond", "Q": "equity", "D": "debenture", "P": "preference"}
     return {
-        "scrip_code": row["SC_CODE"],
+        "scripCode": row["SC_CODE"],
         "open": row["OPEN"],
         "high": row["HIGH"],
         "low": row["LOW"],
         "close": row["CLOSE"],
         "last": row["LAST"],
-        "prev_close": row["PREVCLOSE"],
-        "total_trades": row["NO_TRADES"],
-        "total_shares_traded": row["NO_OF_SHRS"],
-        "net_turnover": row["NET_TURNOV"],
-        "scrip_type": SC_TYPE_MAP[row["SC_TYPE"]],
+        "prevClose": row["PREVCLOSE"],
+        "totalTrades": row["NO_TRADES"],
+        "totalSharesTraded": row["NO_OF_SHRS"],
+        "netTurnover": row["NET_TURNOV"],
+        "scripType": SC_TYPE_MAP[row["SC_TYPE"]],
+        "securityID": row["SC_NAME"].strip(),
     }
