@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="bsedata",
-    version="0.5.4",
+    version="0.6.0",
     author="Shrey Dabhi",
     author_email="shrey.dabhi23@gmail.com",
     description="A package for fetching data from BSE",
@@ -27,6 +27,7 @@ setuptools.setup(
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
         "Intended Audience :: Developers",
