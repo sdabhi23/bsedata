@@ -32,7 +32,7 @@ class InvalidStockException(Exception):
     :param status: the status of the stock as mentioned on BSE website
     """
 
-    def __init__(self, status="Inactive stock"):
+    def __init__(self, status: str="Inactive stock"):
         if status == "":
             self.status = "Inactive stock"
         else:

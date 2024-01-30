@@ -32,7 +32,7 @@ headers = {
 }
 
 
-def getGainers():
+def getGainers() -> dict:
     baseurl = '''https://m.bseindia.com'''
     res = requests.get(baseurl, headers=headers)
     c = res.content

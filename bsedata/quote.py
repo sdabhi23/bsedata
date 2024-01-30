@@ -34,7 +34,7 @@ headers = {
 }
 
 
-def quote(scripCode):
+def quote(scripCode: str) -> dict:
     baseurl = '''https://m.bseindia.com/StockReach.aspx?scripcd='''
     res = requests.get(baseurl + scripCode, headers=headers)
     c = res.content

@@ -32,7 +32,7 @@ headers = {
 }
 
 
-def indices(category):
+def indices(category: str) -> dict:
     cat = {
         "market_cap/broad": "1,2",
         "sector_and_industry": "2,2",
