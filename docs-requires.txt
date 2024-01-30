@@ -1,7 +1,0 @@
-sphinxext-opengraph
-sphinx-copybutton
-beautifulsoup4
-requests
-sphinx
-furo
-lxml

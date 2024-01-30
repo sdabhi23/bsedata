@@ -1,0 +1,8 @@
+beautifulsoup4
+pytest-xdist
+pytest-cov
+requests
+pandas
+pytest
+boto3
+lxml
