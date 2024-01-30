@@ -120,3 +120,15 @@ def test_getBhavCopyData():
     assert scripCodeTypes == predefinedScripCodeTypes
 
     assert len(bhavCopy) > 0
+
+
+def test_topGainers():
+    topGainers = b.topGainers()
+
+    assert len(topGainers) <= 5
+
+
+def test_topLosers():
+    topLosers = b.topLosers()
+
+    assert len(topLosers) <= 5
