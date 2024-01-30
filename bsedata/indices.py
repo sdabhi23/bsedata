@@ -2,7 +2,7 @@
 
     MIT License
 
-    Copyright (c) 2018 - 2023 Shrey Dabhi
+    Copyright (c) 2018 - 2024 Shrey Dabhi
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -24,15 +24,12 @@
 
 """
 
-import requests
+from bsedata.helpers import COMMON_REQUEST_HEADERS
 from bs4 import BeautifulSoup as bs
-
-headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36 Edg/83.0.478.45'
-}
+import requests
 
 
-def indices(category):
+def indices(category: str) -> dict:
     cat = {
         "market_cap/broad": "1,2",
         "sector_and_industry": "2,2",
@@ -43,12 +40,13 @@ def indices(category):
         "composite": "7,1",
         "government": "8,1",
         "corporate": "9,1",
-        "money_market": "10,1"
+        "money_market": "10,1",
     }
     try:
         ddl_category = cat[category]
     except KeyError:
-        print('''
+        print(
+            """
 ### Invalid category ###
 Use one of the categories mentioned below:
 
@@ -62,50 +60,53 @@ composite
 government
 corporate
 money_market
-        ''')
+        """
+        )
         return
-    baseurl = '''https://m.bseindia.com/IndicesView_New.aspx'''
-    res = requests.get(baseurl, headers=headers)
+    baseurl = """https://m.bseindia.com/IndicesView_New.aspx"""
+    res = requests.get(baseurl, headers=COMMON_REQUEST_HEADERS)
     c = res.content
     soup = bs(c, "lxml")
     options = {
-        '__EVENTTARGET': 'ddl_Category',
-        '__VIEWSTATEENCRYPTED': '',
-        '__EVENTARGUMENT': '',
-        '__LASTFOCUS': '',
-        '__VIEWSTATEGENERATOR': '162C96CD',
-        'UcHeaderMenu1$txtGetQuote': '',
-        '__EVENTVALIDATION': '',
-        '__VIEWSTATE': ''
+        "__EVENTTARGET": "ddl_Category",
+        "__VIEWSTATEENCRYPTED": "",
+        "__EVENTARGUMENT": "",
+        "__LASTFOCUS": "",
+        "__VIEWSTATEGENERATOR": "162C96CD",
+        "UcHeaderMenu1$txtGetQuote": "",
+        "__EVENTVALIDATION": "",
+        "__VIEWSTATE": "",
     }
     for input in soup("input"):
         try:
-            if(input['type'] == "hidden"):
-                if(input['id'] == '__VIEWSTATE'):
-                    options['__VIEWSTATE'] = input['value']
-                elif(input['id'] == '__EVENTVALIDATION'):
-                    options['__EVENTVALIDATION'] = input['value']
+            if input["type"] == "hidden":
+                if input["id"] == "__VIEWSTATE":
+                    options["__VIEWSTATE"] = input["value"]
+                elif input["id"] == "__EVENTVALIDATION":
+                    options["__EVENTVALIDATION"] = input["value"]
         except KeyError:
             continue
-    options['ddl_Category'] = ddl_category
-    res = requests.post(url=baseurl, data=options, headers=headers)
+    options["ddl_Category"] = ddl_category
+    res = requests.post(url=baseurl, data=options, headers=COMMON_REQUEST_HEADERS)
     c = res.content
     soup = bs(c, "lxml")
     index_list = []
-    for td in soup('td'):
+    for td in soup("td"):
         try:
-            if(td['class'][0] == 'TTRow_left'):
+            if td["class"][0] == "TTRow_left":
                 index = {}
-                index['currentValue'] = td.next_sibling.string.strip()
-                index['change'] = td.next_sibling.next_sibling.string.strip()
-                index['pChange'] = td.next_sibling.next_sibling.next_sibling.string.strip()
-                index['scripFlag'] = td.a['href'].strip().split('=')[1]
-                index['name'] = td.a.string.strip().replace(';', '')
+                index["currentValue"] = td.next_sibling.string.strip()
+                index["change"] = td.next_sibling.next_sibling.string.strip()
+                index[
+                    "pChange"
+                ] = td.next_sibling.next_sibling.next_sibling.string.strip()
+                index["scripFlag"] = td.a["href"].strip().split("=")[1]
+                index["name"] = td.a.string.strip().replace(";", "")
                 index_list.append(index)
         except KeyError:
             continue
     results = {}
     for span in soup("span", id="inddate"):
-        results['updatedOn'] = span.string[6:].split('|')[0].strip()
-    results['indices'] = index_list
+        results["updatedOn"] = span.string[6:].split("|")[0].strip()
+    results["indices"] = index_list
     return results

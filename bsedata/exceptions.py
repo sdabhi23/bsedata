@@ -2,7 +2,7 @@
 
     MIT License
 
-    Copyright (c) 2018 - 2023 Shrey Dabhi
+    Copyright (c) 2018 - 2024 Shrey Dabhi
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -32,9 +32,20 @@ class InvalidStockException(Exception):
     :param status: the status of the stock as mentioned on BSE website
     """
 
-    def __init__(self, status="Inactive stock"):
+    def __init__(self, status: str = "Inactive stock"):
         if status == "":
             self.status = "Inactive stock"
         else:
             self.status = status
         super().__init__(self.status)
+
+
+class BhavCopyNotFound(Exception):
+    """
+    Exception raised when the BhavCopy file is not found on BSE website.
+    """
+
+    def __init__(self):
+        super().__init__(
+            """The BhavCopy file was not found on the BSE website. You are probably trying to get data for a trading holiday."""
+        )
