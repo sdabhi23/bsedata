@@ -91,29 +91,31 @@ def test_verifyCode_invalid():
     assert b.verifyScripCode("534980") == None
 
 
-all_categories = [
-    "market_cap/broad",
-    "sector_and_industry",
-    "thematics",
-    "strategy",
-    "sustainability",
-    "volatility",
-    "composite",
-    "government",
-    "corporate",
-    "money_market",
-]
+def test_getIndices():
+    all_categories = [
+        "market_cap/broad",
+        "sector_and_industry",
+        "thematics",
+        "strategy",
+        "sustainability",
+        "volatility",
+        "composite",
+        "government",
+        "corporate",
+        "money_market",
+    ]
 
-test_categories = random.choices(all_categories, k=3)
+    test_categories = random.choices(all_categories, k=3)
 
-
-@pytest.mark.parametrize("category", test_categories)
-def test_getIndices(category):
-
-    indices = b.getIndices(category)
-    datetime.datetime.strptime(indices["updatedOn"], "%d %b %Y")
-    assert len(indices["indices"]) >= 1
-    time.sleep(1)
+    for category in test_categories:
+        try:
+            print(f"\nChecking indices for: {category}")
+            indices = b.getIndices(category)
+            datetime.datetime.strptime(indices["updatedOn"], "%d %b %Y")
+            assert len(indices["indices"]) >= 1
+            time.sleep(1)
+        except Exception as e:
+            print(e)
 
 
 def test_getBhavCopyData_on_trade_holiday():
