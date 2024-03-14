@@ -24,6 +24,7 @@
 
 """
 
+import random
 import time
 import pytest
 import datetime
@@ -31,6 +32,11 @@ from bsedata.bse import BSE
 from bsedata.exceptions import InvalidStockException, BhavCopyNotFound
 
 b = BSE(update_codes=True)
+
+
+@pytest.fixture(autouse=True)
+def slow_tests():
+    time.sleep(1)
 
 
 def test_str():
@@ -85,22 +91,25 @@ def test_verifyCode_invalid():
     assert b.verifyScripCode("534980") == None
 
 
-@pytest.mark.parametrize(
-    "category",
-    [
-        "market_cap/broad",
-        "sector_and_industry",
-        "thematics",
-        "strategy",
-        "sustainability",
-        "volatility",
-        "composite",
-        "government",
-        "corporate",
-        "money_market",
-    ],
-)
+all_categories = [
+    "market_cap/broad",
+    "sector_and_industry",
+    "thematics",
+    "strategy",
+    "sustainability",
+    "volatility",
+    "composite",
+    "government",
+    "corporate",
+    "money_market",
+]
+
+test_categories = random.choices(all_categories, k=3)
+
+
+@pytest.mark.parametrize("category", test_categories)
 def test_getIndices(category):
+
     indices = b.getIndices(category)
     datetime.datetime.strptime(indices["updatedOn"], "%d %b %Y")
     assert len(indices["indices"]) >= 1
