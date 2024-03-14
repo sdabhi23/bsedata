@@ -1,6 +1,25 @@
 Change Log
 ==========
 
+v0.6.0
+------
+
+**New Features:**
+
+- Add a way to load historical daily OHLCV data from Bhav Copy released by BSE everyday [:issue:`3`]
+
+**Bug Fixes:**
+
+- Change the source of the scrip code list to fix the broken list of codes [:issue:`48`, :issue:`43`]
+
+**Maintenance:**
+
+- Add a pipenv environment for development
+- Update years in license statements
+- Update time & actions used in ``daily-tests`` workflow
+- Increase tests coverage
+- Add contributing guidelines
+
 v0.5.4
 ------
 
