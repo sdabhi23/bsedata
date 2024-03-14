@@ -52,6 +52,8 @@ def test_getQuote_valid(scripCode):
     else:
         assert len(data) == 27
 
+    time.sleep(0.5)
+
 
 def test_getQuote_invalid_default():
     with pytest.raises(InvalidStockException) as err_info:
