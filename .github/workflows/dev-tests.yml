@@ -35,6 +35,7 @@ jobs:
         pytest --cov=bsedata --no-cov-on-fail --cov-report=xml -n 4
     
     - name: Upload to codecov
+      if: ${{ matrix.python-version == 3.13 }}
       uses: codecov/codecov-action@v3
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
