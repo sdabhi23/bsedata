@@ -50,7 +50,7 @@ bsedata is a library for collecting real-time data from Bombay Stock Exchange (I
 
 .. warning::
 
-   If you are facing any issue with the APIs then it may be beacuse there had been some format change recently in the way BSE reports its live quotes. Please upgrade to the latest version in order to avoid this issue. Report the issue at https://github.com/sdabhi23/bsedata/issues if it is not resolved even after upgrading the version.
+   If you are facing any issue with the APIs then it may be because there had been some format change recently in the way BSE reports its live quotes. Please upgrade to the latest version in order to avoid this issue. Report the issue at https://github.com/sdabhi23/bsedata/issues if it is not resolved even after upgrading the version.
 
 Features
 --------
